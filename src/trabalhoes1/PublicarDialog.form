@@ -1,0 +1,172 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" resourceKey="Form.title"/>
+    <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="2"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="precoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="albumLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="artistaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="generoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="nomeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="nomeField" alignment="0" pref="243" max="32767" attributes="1"/>
+                          <Component id="generoField" alignment="0" pref="243" max="32767" attributes="1"/>
+                          <Component id="albumField" pref="243" max="32767" attributes="1"/>
+                          <Component id="artistaField" alignment="1" pref="243" max="32767" attributes="1"/>
+                          <Component id="precoField" alignment="0" pref="243" max="32767" attributes="1"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="publicarButton" pref="161" max="32767" attributes="1"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="cancelarButton" min="-2" pref="161" max="-2" attributes="1"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="nomeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nomeField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="generoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="generoField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="albumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="albumField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="artistaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="artistaField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="precoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="precoField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="publicarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancelarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="nomeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="nomeLabel.text"/>
+        <Property name="name" type="java.lang.String" value="nomeLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="albumLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="albumLabel.text"/>
+        <Property name="name" type="java.lang.String" value="albumLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="albumField">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="albumField.text"/>
+        <Property name="name" type="java.lang.String" value="albumField" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="artistaLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="artistaLabel.text"/>
+        <Property name="name" type="java.lang.String" value="artistaLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="artistaField">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="artistaField.text"/>
+        <Property name="name" type="java.lang.String" value="artistaField" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nomeField">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="nomeField.text"/>
+        <Property name="name" type="java.lang.String" value="nomeField" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="generoLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="generoLabel.text"/>
+        <Property name="name" type="java.lang.String" value="generoLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="generoField">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="generoField.text"/>
+        <Property name="name" type="java.lang.String" value="generoField" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="precoLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="precoLabel.text"/>
+        <Property name="name" type="java.lang.String" value="precoLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="precoField">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="precoField.text"/>
+        <Property name="name" type="java.lang.String" value="precoField" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="publicarButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="publicarButton.text"/>
+        <Property name="name" type="java.lang.String" value="publicarButton" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="cancelarButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="cancelarButton.text"/>
+        <Property name="name" type="java.lang.String" value="cancelarButton" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarButtonActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
