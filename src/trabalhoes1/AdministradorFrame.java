@@ -10,6 +10,9 @@
  */
 package trabalhoes1;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author Joao
@@ -19,6 +22,30 @@ public class AdministradorFrame extends javax.swing.JFrame {
     /** Creates new form LoginFrame */
     public AdministradorFrame() {
         initComponents();
+        
+        TableColumn column = produtoresTable.getColumnModel().getColumn(3);
+        TableButton button = new TableButton("Remover");
+        button.addTableButtonListener(new TableButtonListener() {
+            @Override
+            public void tableButtonClicked(int row, int col) {
+                JOptionPane.showMessageDialog(null, "Linha: "+row);
+            }
+        });
+        
+        column.setCellRenderer(new TableButton("Remover"));
+        column.setCellEditor(button);
+        
+        column = codigosTable.getColumnModel().getColumn(2);
+        button = new TableButton("Remover");
+        button.addTableButtonListener(new TableButtonListener() {
+            @Override
+            public void tableButtonClicked(int row, int col) {
+                JOptionPane.showMessageDialog(null, "Linha: "+row);
+            }
+        });
+        
+        column.setCellRenderer(new TableButton("Remover"));
+        column.setCellEditor(button);
     }
 
     /** This method is called from within the constructor to
@@ -40,16 +67,11 @@ public class AdministradorFrame extends javax.swing.JFrame {
         atributoCatalogoComboBox = new javax.swing.JComboBox();
         buscarCatalogoOKButton = new javax.swing.JButton();
         listaPanel = new javax.swing.JPanel();
-        buscarListaPanel = new javax.swing.JPanel();
-        buscarListaLabel = new javax.swing.JLabel();
-        buscarListaField = new javax.swing.JTextField();
-        atributoListaComboBox = new javax.swing.JComboBox();
-        buscarListaOKButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listaTable = new javax.swing.JTable();
+        produtoresTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        listaTable1 = new javax.swing.JTable();
+        codigosTable = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         saudacaoLabel = new javax.swing.JLabel();
         administradorButton = new javax.swing.JButton();
@@ -80,20 +102,20 @@ public class AdministradorFrame extends javax.swing.JFrame {
 
         catalogoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Gênero", "Álbum", "Artista/Banda", "Popularidade", "Preço", "Remover"
+                "Nome", "Gênero", "Álbum", "Artista/Banda", "Popularidade", "Preço"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -105,6 +127,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
             }
         });
         catalogoTable.setName("catalogoTable"); // NOI18N
+        catalogoTable.setRowHeight(25);
         catalogoTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(catalogoTable);
         catalogoTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title0")); // NOI18N
@@ -113,7 +136,6 @@ public class AdministradorFrame extends javax.swing.JFrame {
         catalogoTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title3")); // NOI18N
         catalogoTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title4")); // NOI18N
         catalogoTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title5")); // NOI18N
-        catalogoTable.getColumnModel().getColumn(6).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title6")); // NOI18N
 
         buscarCatalogoPanel.setName("buscarCatalogoPanel"); // NOI18N
 
@@ -141,7 +163,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buscarCatalogoField, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(atributoCatalogoComboBox, 0, 136, Short.MAX_VALUE)
+                .addComponent(atributoCatalogoComboBox, 0, 126, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buscarCatalogoOKButton)
                 .addContainerGap())
@@ -165,7 +187,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
         catalogoPanelLayout.setHorizontalGroup(
             catalogoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(buscarCatalogoPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
         );
         catalogoPanelLayout.setVerticalGroup(
             catalogoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,69 +201,24 @@ public class AdministradorFrame extends javax.swing.JFrame {
 
         listaPanel.setName("listaPanel"); // NOI18N
 
-        buscarListaPanel.setName("buscarListaPanel"); // NOI18N
-
-        buscarListaLabel.setFont(resourceMap.getFont("buscarListaLabel.font")); // NOI18N
-        buscarListaLabel.setText(resourceMap.getString("buscarListaLabel.text")); // NOI18N
-        buscarListaLabel.setName("buscarListaLabel"); // NOI18N
-
-        buscarListaField.setFont(resourceMap.getFont("buscarListaField.font")); // NOI18N
-        buscarListaField.setText(resourceMap.getString("buscarListaField.text")); // NOI18N
-        buscarListaField.setName("buscarListaField"); // NOI18N
-
-        atributoListaComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "Email", "Login", "Categoria" }));
-        atributoListaComboBox.setName("atributoListaComboBox"); // NOI18N
-
-        buscarListaOKButton.setText(resourceMap.getString("buscarListaOKButton.text")); // NOI18N
-        buscarListaOKButton.setName("buscarListaOKButton"); // NOI18N
-
-        javax.swing.GroupLayout buscarListaPanelLayout = new javax.swing.GroupLayout(buscarListaPanel);
-        buscarListaPanel.setLayout(buscarListaPanelLayout);
-        buscarListaPanelLayout.setHorizontalGroup(
-            buscarListaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buscarListaPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(buscarListaLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buscarListaField, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(atributoListaComboBox, 0, 136, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buscarListaOKButton)
-                .addContainerGap())
-        );
-        buscarListaPanelLayout.setVerticalGroup(
-            buscarListaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buscarListaPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buscarListaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, buscarListaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(atributoListaComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                        .addComponent(buscarListaOKButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, buscarListaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buscarListaLabel)
-                        .addComponent(buscarListaField, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
-        listaTable.setModel(new javax.swing.table.DefaultTableModel(
+        produtoresTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nome", "Email", "Login", "Categoria", "Remover"
+                "Nome", "Email", "Login", "Remover"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -252,28 +229,24 @@ public class AdministradorFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        listaTable.setName("listaTable"); // NOI18N
-        listaTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(listaTable);
-        listaTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title0")); // NOI18N
-        listaTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title1")); // NOI18N
-        listaTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title2")); // NOI18N
-        listaTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("listaTable.columnModel.title3")); // NOI18N
-        listaTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("listaTable.columnModel.title5")); // NOI18N
+        produtoresTable.setName("produtoresTable"); // NOI18N
+        produtoresTable.setRowHeight(25);
+        produtoresTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(produtoresTable);
+        produtoresTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title0")); // NOI18N
+        produtoresTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title1")); // NOI18N
+        produtoresTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title2")); // NOI18N
+        produtoresTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("listaTable.columnModel.title5")); // NOI18N
 
         javax.swing.GroupLayout listaPanelLayout = new javax.swing.GroupLayout(listaPanel);
         listaPanel.setLayout(listaPanelLayout);
         listaPanelLayout.setHorizontalGroup(
             listaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(buscarListaPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
         );
         listaPanelLayout.setVerticalGroup(
             listaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(listaPanelLayout.createSequentialGroup()
-                .addComponent(buscarListaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab(resourceMap.getString("listaPanel.TabConstraints.tabTitle"), listaPanel); // NOI18N
@@ -282,7 +255,7 @@ public class AdministradorFrame extends javax.swing.JFrame {
 
         jScrollPane3.setName("jScrollPane3"); // NOI18N
 
-        listaTable1.setModel(new javax.swing.table.DefaultTableModel(
+        codigosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -308,18 +281,19 @@ public class AdministradorFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        listaTable1.setName("listaTable1"); // NOI18N
-        listaTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(listaTable1);
-        listaTable1.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title0")); // NOI18N
-        listaTable1.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title1")); // NOI18N
-        listaTable1.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("listaTable.columnModel.title5")); // NOI18N
+        codigosTable.setName("codigosTable"); // NOI18N
+        codigosTable.setRowHeight(25);
+        codigosTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(codigosTable);
+        codigosTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title0")); // NOI18N
+        codigosTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title1")); // NOI18N
+        codigosTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("listaTable.columnModel.title5")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -549,19 +523,15 @@ public class AdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JButton administradorButton;
     private javax.swing.JMenuItem administradorMenuItem;
     private javax.swing.JComboBox atributoCatalogoComboBox;
-    private javax.swing.JComboBox atributoListaComboBox;
     private javax.swing.JTextField buscarCatalogoField;
     private javax.swing.JLabel buscarCatalogoLabel;
     private javax.swing.JButton buscarCatalogoOKButton;
     private javax.swing.JPanel buscarCatalogoPanel;
-    private javax.swing.JTextField buscarListaField;
-    private javax.swing.JLabel buscarListaLabel;
-    private javax.swing.JButton buscarListaOKButton;
-    private javax.swing.JPanel buscarListaPanel;
     private javax.swing.JPanel catalogoPanel;
     private javax.swing.JTable catalogoTable;
     private javax.swing.JButton codigoButton;
     private javax.swing.JMenuItem codigoMenuItem;
+    private javax.swing.JTable codigosTable;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
@@ -572,11 +542,10 @@ public class AdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel listaPanel;
-    private javax.swing.JTable listaTable;
-    private javax.swing.JTable listaTable1;
     private javax.swing.JMenuItem logoutMenuItem;
     private javax.swing.JButton produtorButton;
     private javax.swing.JMenuItem produtorMenuItem;
+    private javax.swing.JTable produtoresTable;
     private javax.swing.JMenuItem sairMenuItem;
     private javax.swing.JLabel saudacaoLabel;
     private javax.swing.JMenuItem senhaMenuItem;

@@ -10,6 +10,16 @@
  */
 package trabalhoes1;
 
+import java.awt.Component;
+import java.util.Arrays;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author Joao
@@ -19,6 +29,18 @@ public class ClienteFrame extends javax.swing.JFrame {
     /** Creates new form LoginFrame */
     public ClienteFrame() {
         initComponents();
+//        catalogoTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+        TableColumn column = catalogoTable.getColumnModel().getColumn(6);
+        TableButton button = new TableButton("Comprar");
+        button.addTableButtonListener(new TableButtonListener() {
+            @Override
+            public void tableButtonClicked(int row, int col) {
+                JOptionPane.showMessageDialog(null, "Linha: "+row);
+            }
+        });
+        
+        column.setCellRenderer(new TableButton("Comprar"));
+        column.setCellEditor(button);
     }
 
     /** This method is called from within the constructor to
@@ -87,7 +109,7 @@ public class ClienteFrame extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,6 +121,8 @@ public class ClienteFrame extends javax.swing.JFrame {
             }
         });
         catalogoTable.setName("catalogoTable"); // NOI18N
+        catalogoTable.setRowHeight(25);
+        catalogoTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         catalogoTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(catalogoTable);
         catalogoTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title0")); // NOI18N
@@ -107,7 +131,6 @@ public class ClienteFrame extends javax.swing.JFrame {
         catalogoTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title3")); // NOI18N
         catalogoTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title4")); // NOI18N
         catalogoTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title5")); // NOI18N
-        catalogoTable.getColumnModel().getColumn(6).setHeaderValue("Comprar"); // NOI18N
 
         buscarCatalogoPanel.setName("buscarCatalogoPanel"); // NOI18N
 
@@ -247,6 +270,7 @@ public class ClienteFrame extends javax.swing.JFrame {
             }
         });
         listaTable.setName("listaTable"); // NOI18N
+        listaTable.setRowHeight(25);
         listaTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(listaTable);
         listaTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title0")); // NOI18N
@@ -259,13 +283,11 @@ public class ClienteFrame extends javax.swing.JFrame {
         listaPanel.setLayout(listaPanelLayout);
         listaPanelLayout.setHorizontalGroup(
             listaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 681, Short.MAX_VALUE)
             .addComponent(buscarListaPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
         );
         listaPanelLayout.setVerticalGroup(
             listaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 425, Short.MAX_VALUE)
             .addGroup(listaPanelLayout.createSequentialGroup()
                 .addComponent(buscarListaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

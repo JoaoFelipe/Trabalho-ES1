@@ -10,6 +10,10 @@
  */
 package trabalhoes1;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author Joao
@@ -19,6 +23,34 @@ public class ProdutorFrame extends javax.swing.JFrame {
     /** Creates new form LoginFrame */
     public ProdutorFrame() {
         initComponents();
+        
+        TableColumn column = listaTable.getColumnModel().getColumn(6);
+        TableButton button = new TableButton("Alterar");
+        final JFrame self = this;
+        button.addTableButtonListener(new TableButtonListener() {
+            @Override
+            public void tableButtonClicked(int row, int col) {
+                PublicarDialog publicarDialog = new PublicarDialog(self);
+                publicarDialog.setVisible(true);
+//                JOptionPane.showMessageDialog(null, "Linha: "+row);
+            }
+        });
+        
+        column.setCellRenderer(new TableButton("Alterar"));
+        column.setCellEditor(button);
+        
+        
+        column = listaTable.getColumnModel().getColumn(7);
+        button = new TableButton("Remover");
+        button.addTableButtonListener(new TableButtonListener() {
+            @Override
+            public void tableButtonClicked(int row, int col) {
+                JOptionPane.showMessageDialog(null, "Linha: "+row);
+            }
+        });
+        
+        column.setCellRenderer(new TableButton("Remover"));
+        column.setCellEditor(button);
     }
 
     /** This method is called from within the constructor to
@@ -99,6 +131,7 @@ public class ProdutorFrame extends javax.swing.JFrame {
             }
         });
         catalogoTable.setName("catalogoTable"); // NOI18N
+        catalogoTable.setRowHeight(25);
         catalogoTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(catalogoTable);
         catalogoTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title0")); // NOI18N
@@ -221,20 +254,20 @@ public class ProdutorFrame extends javax.swing.JFrame {
 
         listaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Gênero", "Álbum", "Artista/Banda", "Popularidade", "Preço", "Remover"
+                "Nome", "Gênero", "Álbum", "Artista/Banda", "Popularidade", "Preço", "Alterar", "Remover"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -246,6 +279,7 @@ public class ProdutorFrame extends javax.swing.JFrame {
             }
         });
         listaTable.setName("listaTable"); // NOI18N
+        listaTable.setRowHeight(25);
         listaTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(listaTable);
         listaTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title0")); // NOI18N
@@ -254,7 +288,8 @@ public class ProdutorFrame extends javax.swing.JFrame {
         listaTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title3")); // NOI18N
         listaTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("catalogoTable.columnModel.title4")); // NOI18N
         listaTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("listaTable.columnModel.title6")); // NOI18N
-        listaTable.getColumnModel().getColumn(6).setHeaderValue(resourceMap.getString("listaTable.columnModel.title5")); // NOI18N
+        listaTable.getColumnModel().getColumn(6).setHeaderValue(resourceMap.getString("listaTable.columnModel.title7")); // NOI18N
+        listaTable.getColumnModel().getColumn(7).setHeaderValue(resourceMap.getString("listaTable.columnModel.title5")); // NOI18N
 
         javax.swing.GroupLayout listaPanelLayout = new javax.swing.GroupLayout(listaPanel);
         listaPanel.setLayout(listaPanelLayout);

@@ -28,11 +28,17 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="codigoLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                      <Component id="codigoField" pref="250" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="codigoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantidadeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="quantidadeField" alignment="0" pref="250" max="32767" attributes="1"/>
+                          <Component id="codigoField" alignment="0" pref="250" max="32767" attributes="1"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="okButton" pref="157" max="32767" attributes="1"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cancelarButton" min="-2" pref="161" max="-2" attributes="1"/>
@@ -50,12 +56,17 @@
                   <Component id="codigoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="codigoField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="quantidadeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="quantidadeField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="okButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelarButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,6 +98,18 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="quantidadeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="quantidadeLabel.text"/>
+        <Property name="name" type="java.lang.String" value="quantidadeLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="quantidadeField">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="quantidadeField.text"/>
+        <Property name="name" type="java.lang.String" value="quantidadeField" noResource="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
