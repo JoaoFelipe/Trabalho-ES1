@@ -29,7 +29,64 @@ public class ClienteFrame extends javax.swing.JFrame {
     /** Creates new form LoginFrame */
     public ClienteFrame() {
         initComponents();
-//        catalogoTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+        definirTabelas();
+    }
+    
+    public void definirTabelas() {
+        catalogoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nome", "Gênero", "Álbum", "Artista/Banda", "Popularidade", "Preço", "Comprar"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        
+        listaTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nome", "Gênero", "Álbum", "Artista/Banda", "Popularidade"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        
         TableColumn column = catalogoTable.getColumnModel().getColumn(6);
         TableButton button = new TableButton("Comprar");
         button.addTableButtonListener(new TableButtonListener() {
@@ -41,6 +98,7 @@ public class ClienteFrame extends javax.swing.JFrame {
         
         column.setCellRenderer(new TableButton("Comprar"));
         column.setCellEditor(button);
+        
     }
 
     /** This method is called from within the constructor to
