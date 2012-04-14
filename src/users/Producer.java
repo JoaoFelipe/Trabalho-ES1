@@ -53,5 +53,9 @@ public class Producer extends User {
         return publications.size();
     }
 
+    public List<Music> getPublications() {
+        return publications;
+    }
+
     
 }

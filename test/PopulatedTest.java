@@ -1,3 +1,4 @@
+import sessions.Session;
 import users.Admin;
 import musics.Catalog;
 import musics.Music;
@@ -9,7 +10,7 @@ import users.Users;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sessions.Session;
+import sessions.UserSession;
 import users.Client;
 import static org.junit.Assert.*;
 
@@ -55,7 +56,7 @@ public class PopulatedTest {
         Users.eraseInstance();
         Credits.eraseInstance();
         Catalog.eraseInstance();
-        Session.endSession();
+        Session.eraseInstance();
     }
         
     @Test
@@ -78,11 +79,11 @@ public class PopulatedTest {
     @Test
     public void testFilterMusicListAndCatalogForSearch() throws Exception {
         assertEquals(4, catalog.count());
-        assertArrayEquals(Arrays.asList(m1,m2,m3,m4).toArray(), catalog.filter("name", "o").toArray());
-        assertArrayEquals(Arrays.asList(m4).toArray(), catalog.filter("name", "a").toArray());
-        assertArrayEquals(Arrays.asList(m1,m2).toArray(), catalog.filter("artist", "Avril").toArray());
-        assertArrayEquals(Arrays.asList(m3,m4).toArray(), catalog.filter("artist", "Shakira").toArray());
-        assertArrayEquals(Arrays.asList(m1,m3,m4).toArray(), catalog.filter("genre", "pop").toArray());
+        assertArrayEquals(Arrays.asList(m1,m2,m3,m4).toArray(), Music.filterMusicList(catalog.getCatalog(), "name", "o").toArray());
+        assertArrayEquals(Arrays.asList(m4).toArray(), Music.filterMusicList(catalog.getCatalog(), "name", "a").toArray());
+        assertArrayEquals(Arrays.asList(m1,m2).toArray(), Music.filterMusicList(catalog.getCatalog(), "artist", "Avril").toArray());
+        assertArrayEquals(Arrays.asList(m3,m4).toArray(), Music.filterMusicList(catalog.getCatalog(), "artist", "Shakira").toArray());
+        assertArrayEquals(Arrays.asList(m1,m3,m4).toArray(), Music.filterMusicList(catalog.getCatalog(), "genre", "pop").toArray());
         assertArrayEquals(Arrays.asList(m1,m3).toArray(), Music.filterMusicList(Arrays.asList(m1,m2,m3), "genre", "pop").toArray());
         
     }
@@ -90,8 +91,8 @@ public class PopulatedTest {
     @Test
     public void testSortMusicListAndCatalogByField() throws Exception {
         assertEquals(4, catalog.count());
-        assertArrayEquals(Arrays.asList(m2,m4,m3,m1).toArray(), catalog.sort("name").toArray()); //String: crescente
-        assertArrayEquals(Arrays.asList(m3,m2,m4,m1).toArray(), catalog.sort("price").toArray()); //Int: decrescente
+        assertArrayEquals(Arrays.asList(m2,m4,m3,m1).toArray(), Music.sortMusicList(catalog.getCatalog(), "name").toArray()); //String: crescente
+        assertArrayEquals(Arrays.asList(m3,m2,m4,m1).toArray(), Music.sortMusicList(catalog.getCatalog(), "price").toArray()); //Int: decrescente
         assertArrayEquals(Arrays.asList(m3,m2,m1).toArray(), Music.sortMusicList(Arrays.asList(m1,m2,m3), "price").toArray()); //Int: decrescente
         assertArrayEquals(Arrays.asList(m4,m2,m1,m3).toArray(), Music.sortMusicList(Arrays.asList(m1,m2,m3,m4), "popularity").toArray()); //Int: decrescente
     }

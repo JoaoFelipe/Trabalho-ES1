@@ -4,6 +4,8 @@
  */
 package users;
 
+import sessions.UserSession;
+
 /**
  *
  * @author casa
@@ -113,7 +115,6 @@ public abstract class User {
             throw new Exception("A senha nova não coincide com a repetição da senha");
         }
         this.password = newPassword;
-        
     }
     
 }

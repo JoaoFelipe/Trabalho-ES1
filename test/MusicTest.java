@@ -1,3 +1,4 @@
+import sessions.Session;
 import musics.Catalog;
 import musics.Music;
 import credits.Credits;
@@ -8,7 +9,7 @@ import users.Users;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sessions.Session;
+import sessions.UserSession;
 import static org.junit.Assert.*;
 
 public class MusicTest {
@@ -30,7 +31,7 @@ public class MusicTest {
         Users.eraseInstance();
         Credits.eraseInstance();
         Catalog.eraseInstance();
-        Session.endSession();
+        Session.eraseInstance();
     }
         
     @Test

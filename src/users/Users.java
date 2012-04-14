@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import sessions.Session;
+import sessions.LoginSession;
+import sessions.UserSession;
 
 /**
  *
@@ -60,7 +62,7 @@ public class Users {
         if (user == null || !user.validatePassword(password)) {
             throw new Exception("O login e/ou a senha estão incorretos");
         }
-        Session.startSession(user);
+        ((LoginSession) Session.getInstance()).startSession(user);
         return user;
     }
     

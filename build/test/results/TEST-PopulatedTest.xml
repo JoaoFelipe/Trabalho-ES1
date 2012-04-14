@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Core2-Joao" name="UserTest" tests="16" time="0.398" timestamp="2012-04-14T06:36:20">
+<testsuite errors="0" failures="0" hostname="Core2-Joao" name="PopulatedTest" tests="8" time="0.294" timestamp="2012-04-14T06:36:19">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="BR" />
@@ -465,22 +465,14 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="UserTest" name="testUsersDefaultInstanceShouldCreateAnAdmin" time="0.0050" />
-  <testcase classname="UserTest" name="testCreateClient" time="0.0" />
-  <testcase classname="UserTest" name="testCantCreateUserWithInvalidEmail" time="0.0010" />
-  <testcase classname="UserTest" name="testCantCreateUserWithEmptyField" time="0.0010" />
-  <testcase classname="UserTest" name="testCantCreateUserIfPasswordRepetitionIsInvalid" time="0.0020" />
-  <testcase classname="UserTest" name="testClientCanSignUp" time="0.0010" />
-  <testcase classname="UserTest" name="testClientLoginShouldBeUnique" time="0.0010" />
-  <testcase classname="UserTest" name="testCreateAdmin" time="0.0" />
-  <testcase classname="UserTest" name="testCreateProducer" time="0.0010" />
-  <testcase classname="UserTest" name="testUserLogin" time="0.0030" />
-  <testcase classname="UserTest" name="testLoginMustExist" time="0.0010" />
-  <testcase classname="UserTest" name="testPasswordShouldMatch" time="0.0" />
-  <testcase classname="UserTest" name="testChangeUserPassword" time="0.0" />
-  <testcase classname="UserTest" name="testCantChangePasswordIfTheOldDontMatch" time="0.0" />
-  <testcase classname="UserTest" name="testCantChangePassowrdifTheNewPasswordDontMatchTheRepetition" time="0.0010" />
-  <testcase classname="UserTest" name="testCloseSession" time="0.096" />
+  <testcase classname="PopulatedTest" name="testMusicMatchesSearchConditionIgnoringCase" time="0.011" />
+  <testcase classname="PopulatedTest" name="testFilterMusicListAndCatalogForSearch" time="0.0030" />
+  <testcase classname="PopulatedTest" name="testSortMusicListAndCatalogByField" time="0.0030" />
+  <testcase classname="PopulatedTest" name="testClientCanBuyMusic" time="0.0010" />
+  <testcase classname="PopulatedTest" name="testClientCannotBuyTheSameMusicTwice" time="0.0010" />
+  <testcase classname="PopulatedTest" name="testClientCannotBuyAMusicIfItsPriceIsHighestThanHisCredits" time="0.0010" />
+  <testcase classname="PopulatedTest" name="testRemoveProducer" time="0.091" />
+  <testcase classname="PopulatedTest" name="testOnlyProducersCanBeRemoved" time="0.0010" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

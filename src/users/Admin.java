@@ -42,4 +42,14 @@ public class Admin extends User {
         Users.getInstance().remove(user);
     }
     
+    public void signUpAdmin(String name, String email, String login, String password, String repeatPassword) throws Exception {
+        Admin admin = new Admin(name, email, login, password, repeatPassword);
+        Users.getInstance().signUp(admin);
+    }
+    
+    public void signUpProducer(String name, String email, String login, String password, String repeatPassword) throws Exception {
+        Producer producer = new Producer(name, email, login, password, repeatPassword);
+        Users.getInstance().signUp(producer);
+    }
+    
 }

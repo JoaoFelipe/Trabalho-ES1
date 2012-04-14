@@ -1,3 +1,4 @@
+import sessions.Session;
 import credits.Credit;
 import credits.Credits;
 import users.Admin;
@@ -6,7 +7,7 @@ import users.Users;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sessions.Session;
+import sessions.UserSession;
 import users.Client;
 import static org.junit.Assert.*;
 
@@ -29,7 +30,7 @@ public class CreditTest {
         Users.eraseInstance();
         Credits.eraseInstance();
         Catalog.eraseInstance();
-        Session.endSession();
+        Session.eraseInstance();
     }
     
     @Test

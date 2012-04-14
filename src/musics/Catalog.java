@@ -44,11 +44,8 @@ public class Catalog {
         return list.remove(music);
     }
     
-    public List<Music> filter(String field, String keywords) {
-        return Music.filterMusicList(list, field, keywords);
+    public List<Music> getCatalog() {
+        return list;
     }
     
-    public List<Music> sort(String field) {
-        return Music.sortMusicList(list, field);
-    }
 }

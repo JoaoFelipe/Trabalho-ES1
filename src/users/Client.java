@@ -49,6 +49,8 @@ public class Client extends User {
         music.increasePopularity();
     }
    
-   
+    public List<Music> getMusics() {
+        return myMusics;
+    }
     
 }

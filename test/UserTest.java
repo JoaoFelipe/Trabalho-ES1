@@ -1,3 +1,4 @@
+import sessions.Session;
 import credits.Credits;
 import users.Producer;
 import users.Admin;
@@ -9,7 +10,8 @@ import users.Users;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sessions.Session;
+import sessions.LoginSession;
+import sessions.UserSession;
 import users.Client;
 import static org.junit.Assert.*;
 
@@ -37,7 +39,7 @@ public class UserTest {
         Users.eraseInstance();
         Credits.eraseInstance();
         Catalog.eraseInstance();
-        Session.endSession();
+        Session.eraseInstance();
     }
     
     @Test
@@ -145,32 +147,35 @@ public class UserTest {
     
     @Test
     public void testUserLogin() throws Exception {
-        assertNull(session);
+        assertTrue(session instanceof LoginSession);
         users.login("admin", "admin");
-        assertNotNull(Session.getInstance());
-        assertEquals(users.findByLogin("admin"), Session.getInstance().getUser());
+        session = Session.getInstance();
+        assertTrue(session instanceof UserSession);
+        assertEquals(users.findByLogin("admin"), ((UserSession) session).getUser());
     }
     
     @Test
     public void testLoginMustExist() throws Exception {
-        assertNull(session);
+        assertTrue(session instanceof LoginSession);
         try {
             users.login("teste", "admin");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("O login e/ou a senha estão incorretos", e.getMessage());
         }
+        assertTrue(session instanceof LoginSession);
     }
     
     @Test
     public void testPasswordShouldMatch() throws Exception {
-        assertNull(session);
+        assertTrue(session instanceof LoginSession);
         try {
             users.login("admin", "123456");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("O login e/ou a senha estão incorretos", e.getMessage());
         }
+        assertTrue(session instanceof LoginSession);
     }
     
     @Test
@@ -206,11 +211,11 @@ public class UserTest {
     
     @Test
     public void testCloseSession() throws Exception {
-        assertNull(session);
-        session = Session.startSession(admin);
-        assertNotNull(session);
-        Session.endSession();
-        assertNull(Session.getInstance());
+        assertTrue(session instanceof LoginSession);
+        session = LoginSession.startSession(admin);
+        assertTrue(session instanceof UserSession);
+        session = ((UserSession) session).logout();
+        assertTrue(session instanceof LoginSession);
     }
     
 
