@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import sessions.Session;
 
 /**
  *
@@ -52,6 +53,15 @@ public class Users {
         if (!list.add(user)) {
             throw new Exception("Este login já existe");
         }
+    }
+    
+    public User login(String login, String password) throws Exception {
+        User user = this.findByLogin(login);
+        if (user == null || !user.validatePassword(password)) {
+            throw new Exception("O login e/ou a senha estão incorretos");
+        }
+        Session.startSession(user);
+        return user;
     }
     
     

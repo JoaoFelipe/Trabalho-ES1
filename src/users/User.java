@@ -104,5 +104,16 @@ public abstract class User {
     public int hashCode() {
         return this.login.hashCode();
     }
+
+    public void changePassword(String oldPassword, String newPassword, String repeatNewPassword) throws Exception {
+        if (!this.validatePassword(oldPassword)) {
+            throw new Exception("A senha antiga está incorreta");
+        }
+        if (!newPassword.equals(repeatNewPassword)) {
+            throw new Exception("A senha nova não coincide com a repetição da senha");
+        }
+        this.password = newPassword;
+        
+    }
     
 }

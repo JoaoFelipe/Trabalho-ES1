@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+import users.Producer;
+import users.Admin;
 import java.util.List;
 import java.util.Arrays;
 import users.User;
@@ -12,6 +14,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import sessions.Session;
 import users.Client;
 import static org.junit.Assert.*;
 
@@ -35,6 +38,7 @@ public class UserTest {
     @Before
     public void setUp() {
         Users.eraseInstance();
+        Session.endSession();
     }
     
     @After
@@ -120,4 +124,112 @@ public class UserTest {
         }
         assertEquals(1, users.getUserCount());
     }
+    
+    @Test
+    public void itShouldBePossibleToCreateAValidAdmin() throws Exception {
+        Users users = Users.getInstance();
+        assertNull(users.findByLogin("aninha"));
+        User user = new Admin("Ana", "ana@email.com", "aninha", "123456", "123456");
+        users.signUp(user);
+        assertEquals(user, users.findByLogin("aninha"));
+        assertEquals(2, users.getUserCount());
+        assertEquals(user.getName(), "Ana");
+        assertEquals(user.getEmail(), "ana@email.com");
+        assertEquals(user.getLogin(), "aninha");
+        assertTrue(user.validatePassword("123456"));
+    }
+    
+    @Test
+    public void itShouldBePossibleToCreateAValidProducer() throws Exception {
+        Users users = Users.getInstance();
+        assertNull(users.findByLogin("aninha"));
+        User user = new Producer("Ana", "ana@email.com", "aninha", "123456", "123456");
+        users.signUp(user);
+        assertEquals(user, users.findByLogin("aninha"));
+        assertEquals(2, users.getUserCount());
+        assertEquals(user.getName(), "Ana");
+        assertEquals(user.getEmail(), "ana@email.com");
+        assertEquals(user.getLogin(), "aninha");
+        assertTrue(user.validatePassword("123456"));
+    }
+    
+    @Test
+    public void itShouldBePossibleToLoginAUser() throws Exception {
+        Users users = Users.getInstance();
+        assertNull(Session.getInstance());
+        users.login("admin", "admin");
+        assertNotNull(Session.getInstance());
+        assertEquals(users.findByLogin("admin"), Session.getInstance().getUser());
+    }
+    
+    @Test
+    public void loginShouldFailForInvalidLogin() throws Exception {
+        Users users = Users.getInstance();
+        assertNull(Session.getInstance());
+        try {
+            users.login("teste", "admin");
+            assertFalse(true);
+        } catch (Exception e) {
+            assertEquals("O login e/ou a senha estão incorretos", e.getMessage());
+        }
+    }
+    
+    @Test
+    public void loginShouldFailForInvalidPassword() throws Exception {
+        Users users = Users.getInstance();
+        assertNull(Session.getInstance());
+        try {
+            users.login("admin", "123456");
+            assertFalse(true);
+        } catch (Exception e) {
+            assertEquals("O login e/ou a senha estão incorretos", e.getMessage());
+        }
+    }
+    
+    @Test
+    public void itShouldBePossibleToChangeAUserPassword() throws Exception {
+        Users users = Users.getInstance();
+        User admin = users.findByLogin("admin");
+        assertFalse(admin.validatePassword("123456"));
+        admin.changePassword("admin", "123456", "123456");
+        assertTrue(admin.validatePassword("123456"));
+    }
+    
+    @Test
+    public void itShouldNotChangeThePasswordIfTheOldPasswordIsWrong() throws Exception {
+        Users users = Users.getInstance();
+        User admin = users.findByLogin("admin");
+        assertFalse(admin.validatePassword("123456"));
+        try {
+            admin.changePassword("abcdef", "123456", "123456");
+            assertFalse(true);
+        } catch (Exception e) {
+            assertEquals("A senha antiga está incorreta", e.getMessage());
+        }
+        assertFalse(admin.validatePassword("123456"));
+    }
+    
+    @Test
+    public void itShouldNotChangeThePasswordIfTheNewPasswordDontMatchTheRepetition() throws Exception {
+        Users users = Users.getInstance();
+        User admin = users.findByLogin("admin");
+        assertFalse(admin.validatePassword("123456"));
+        try {
+            admin.changePassword("admin", "123456", "654321");
+            assertFalse(true);
+        } catch (Exception e) {
+            assertEquals("A senha nova não coincide com a repetição da senha", e.getMessage());
+        }
+        assertFalse(admin.validatePassword("123456"));
+    }
+    
+    @Test
+    public void userSessionCanBeClosed() throws Exception {
+        assertNull(Session.getInstance());
+        Session.startSession(Users.getInstance().findByLogin("admin"));
+        assertNotNull(Session.getInstance());
+        Session.endSession();
+        assertNull(Session.getInstance());
+    }
+    
 }
