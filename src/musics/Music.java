@@ -29,7 +29,9 @@ public class Music {
             throw new Exception("Todos os atributos devem estar preenchidos");
         }
         try {
-            Integer.parseInt(price);
+            if (Integer.parseInt(price) < 0) {
+                throw new NumberFormatException("-");
+            }
         } catch (NumberFormatException n) {
             throw new Exception("O preço é inválido");
         }

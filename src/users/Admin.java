@@ -24,6 +24,9 @@ public class Admin extends User {
         try {
             int c = Integer.parseInt(count);
             int v = Integer.parseInt(value);
+            if (c < 0 || v < 0) {
+                throw new NumberFormatException("-");
+            }
             Credits.getInstance().generate(c, v);
         } catch (NumberFormatException e) {
             throw new Exception("As informações digitadas estão inconsistentes");

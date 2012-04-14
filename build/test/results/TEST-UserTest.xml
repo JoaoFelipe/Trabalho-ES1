@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Core2-Joao" name="UserTest" tests="16" time="0.32" timestamp="2012-04-14T03:34:36">
+<testsuite errors="0" failures="0" hostname="Core2-Joao" name="UserTest" tests="16" time="0.4" timestamp="2012-04-14T04:56:38">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="BR" />
@@ -466,22 +466,22 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="UserTest" name="usersDefaultInstanceShouldCreateAnAdmin" time="0.0040" />
-  <testcase classname="UserTest" name="itShouldBePossibleToCreateAValidClient" time="0.0010" />
-  <testcase classname="UserTest" name="userConstructorShouldValidateEmail" time="0.0010" />
-  <testcase classname="UserTest" name="userConstructorShouldVerifyIfTheresAEmptyField" time="0.0" />
-  <testcase classname="UserTest" name="userConstructorShouldValidateThePasswords" time="0.0" />
-  <testcase classname="UserTest" name="clientCanSignUp" time="0.0" />
-  <testcase classname="UserTest" name="clientLoginShouldBeUnique" time="0.0" />
-  <testcase classname="UserTest" name="itShouldBePossibleToCreateAValidAdmin" time="0.0" />
-  <testcase classname="UserTest" name="itShouldBePossibleToCreateAValidProducer" time="0.0" />
-  <testcase classname="UserTest" name="itShouldBePossibleToLoginAUser" time="0.0" />
-  <testcase classname="UserTest" name="loginShouldFailForInvalidLogin" time="0.0" />
-  <testcase classname="UserTest" name="loginShouldFailForInvalidPassword" time="0.085" />
-  <testcase classname="UserTest" name="itShouldBePossibleToChangeAUserPassword" time="0.0" />
-  <testcase classname="UserTest" name="itShouldNotChangeThePasswordIfTheOldPasswordIsWrong" time="0.0" />
-  <testcase classname="UserTest" name="itShouldNotChangeThePasswordIfTheNewPasswordDontMatchTheRepetition" time="0.0" />
-  <testcase classname="UserTest" name="userSessionCanBeClosed" time="0.0020" />
+  <testcase classname="UserTest" name="testUsersDefaultInstanceShouldCreateAnAdmin" time="0.0040" />
+  <testcase classname="UserTest" name="testCreateClient" time="0.0" />
+  <testcase classname="UserTest" name="testCantCreateUserWithInvalidEmail" time="0.0" />
+  <testcase classname="UserTest" name="testCantCreateUserWithEmptyField" time="0.0" />
+  <testcase classname="UserTest" name="testCantCreateUserIfPasswordRepetitionIsInvalid" time="0.0" />
+  <testcase classname="UserTest" name="testClientCanSignUp" time="0.0" />
+  <testcase classname="UserTest" name="testClientLoginShouldBeUnique" time="0.0" />
+  <testcase classname="UserTest" name="testCreateAdmin" time="0.0020" />
+  <testcase classname="UserTest" name="testCreateProducer" time="0.0" />
+  <testcase classname="UserTest" name="testUserLogin" time="0.0" />
+  <testcase classname="UserTest" name="testLoginMustExist" time="0.0" />
+  <testcase classname="UserTest" name="testPasswordShouldMatch" time="0.0" />
+  <testcase classname="UserTest" name="testChangeUserPassword" time="0.096" />
+  <testcase classname="UserTest" name="testCantChangePasswordIfTheOldDontMatch" time="0.0" />
+  <testcase classname="UserTest" name="testCantChangePassowrdifTheNewPasswordDontMatchTheRepetition" time="0.0" />
+  <testcase classname="UserTest" name="testCloseSession" time="0.0020" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

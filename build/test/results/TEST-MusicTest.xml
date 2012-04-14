@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Core2-Joao" name="MusicTest" tests="17" time="0.411" timestamp="2012-04-14T03:34:35">
+<testsuite errors="0" failures="0" hostname="Core2-Joao" name="MusicTest" tests="12" time="0.392" timestamp="2012-04-14T04:56:36">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="BR" />
@@ -466,23 +466,18 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="MusicTest" name="itShouldBePossibleToCreateAMusic" time="0.0070" />
-  <testcase classname="MusicTest" name="musicConstructorShouldVerifyIfTheresAEmptyField" time="0.0010" />
-  <testcase classname="MusicTest" name="musicConstructorShouldVerifyIfPriceIsValid" time="0.0010" />
-  <testcase classname="MusicTest" name="itShouldBePossibleToPublishAMusicInCatalog" time="0.0010" />
-  <testcase classname="MusicTest" name="itShouldBePossibleToIncrementMusicPopularity" time="0.0010" />
-  <testcase classname="MusicTest" name="itShouldBePossibleToChangeMusicInformations" time="0.0" />
-  <testcase classname="MusicTest" name="itShouldBePossibleToRemoveAMusicFromCatalog" time="0.0010" />
-  <testcase classname="MusicTest" name="itShouldNotBePossibleToRemoveAMusicTwice" time="0.0" />
-  <testcase classname="MusicTest" name="aProducerCanPublishAMusic" time="0.0010" />
-  <testcase classname="MusicTest" name="aProducerCanChangeMusicInformationsIfHePublishedTheMusic" time="0.093" />
-  <testcase classname="MusicTest" name="aProducerCanRemoveMusicFromCatalogInformationsIfHePublishedTheMusic" time="0.0010" />
-  <testcase classname="MusicTest" name="musicMatchesSearchConditionIgnoreCase" time="0.0010" />
-  <testcase classname="MusicTest" name="filterCatalogForSearch" time="0.0030" />
-  <testcase classname="MusicTest" name="sortCatalogByField" time="0.0010" />
-  <testcase classname="MusicTest" name="aClientCanBuyAMusic" time="0.0030" />
-  <testcase classname="MusicTest" name="aClientCannotBuyTheSameMusicTwice" time="0.0020" />
-  <testcase classname="MusicTest" name="aClientCannotBuyTheAMusicIfItIsHighestThanHisCredits" time="0.0010" />
+  <testcase classname="MusicTest" name="testCreateAMusic" time="0.0070" />
+  <testcase classname="MusicTest" name="testCantCreateMusicWithEmptyField" time="0.0" />
+  <testcase classname="MusicTest" name="testCantCreateMusicWithInvalidPrice" time="0.0" />
+  <testcase classname="MusicTest" name="testCantCreateMusicWithNegativePrice" time="0.084" />
+  <testcase classname="MusicTest" name="testPublishMusicInCatalog" time="0.0" />
+  <testcase classname="MusicTest" name="testIncreaseMusicPopularity" time="0.0020" />
+  <testcase classname="MusicTest" name="testChangeMusicInformations" time="0.0" />
+  <testcase classname="MusicTest" name="testRemoveMusicFromCatalog" time="0.094" />
+  <testcase classname="MusicTest" name="testCantRemoveMusicTwice" time="0.0" />
+  <testcase classname="MusicTest" name="testProducersCanPublishMusics" time="0.0" />
+  <testcase classname="MusicTest" name="testProducersCanChangeInformationsFromMusicsThatHePublished" time="0.0" />
+  <testcase classname="MusicTest" name="testProducersCanRemoveMusicsThatHePublished" time="0.096" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
