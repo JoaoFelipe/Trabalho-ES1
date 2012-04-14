@@ -4,6 +4,8 @@
  */
 package credits;
 
+import java.util.Arrays;
+
 
 /**
  *
@@ -88,6 +90,10 @@ public class Credit {
     @Override
     public int hashCode() {
         return this.value + 31*this.code.hashCode();
+    }
+    
+    public Object[] tuple() {
+        return Arrays.asList(this.code, this.value).toArray();
     }
     
 }

@@ -6,6 +6,7 @@ package musics;
 
 import credits.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -43,6 +44,11 @@ public class Catalog {
     public boolean remove(Music music) {
         return list.remove(music);
     }
+    
+    public boolean removeAll(Collection<Music> musics) {
+        return list.removeAll(musics);
+    }
+    
     
     public List<Music> getCatalog() {
         return list;

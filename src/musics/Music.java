@@ -119,14 +119,17 @@ public class Music {
     
     public static List<Music> sortMusicList(List<Music> list, final String field) {
         List<Music> result = new ArrayList(list);
-        Collections.sort(result, new Comparator<Music>(){
+        Collections.sort(result, comparatorForField(field));
+        return result;
+    }
+    
+    private static Comparator<Music> comparatorForField(final String field) {
+        return new Comparator<Music>(){
 
             public int compare(Music o1, Music o2) {
                 return o1.mapField(field).compareTo(o2.mapField(field));
             }
-     
-        });
-        return result;
+        };
     }
     
 }

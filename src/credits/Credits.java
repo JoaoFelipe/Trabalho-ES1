@@ -4,7 +4,11 @@
  */
 package credits;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  *
@@ -65,6 +69,23 @@ public class Credits {
         }
         credit.activate();
         return credit;
+    }
+    
+    public List<Credit> getCredits() {
+        List<Credit> result = new ArrayList<Credit>();
+        for (Credit credit : list) {
+            if (!credit.isActive()) {
+                result.add(credit);
+            }
+        }
+        Collections.sort(result, new Comparator<Credit>(){
+
+            public int compare(Credit o1, Credit o2) {
+                return Integer.valueOf(o1.getValue()).compareTo(Integer.valueOf(o2.getValue()));
+            }
+            
+        });
+        return result;
     }
     
     

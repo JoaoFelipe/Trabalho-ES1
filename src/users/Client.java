@@ -46,6 +46,7 @@ public class Client extends User {
         }
         myMusics.add(music);
         credits -= music.getPrice();
+        music.getProducer().addCredits(music.getPrice());
         music.increasePopularity();
     }
    

@@ -4,16 +4,19 @@
  */
 package sessions;
 
+import java.awt.Component;
+import javax.swing.JFrame;
 import users.User;
 
 /**
  *
  * @author Joao
  */
-public class Session {
+public abstract class Session {
     
     public static Session session = null;
-    
+    protected JFrame component = null;
+
     public static void eraseInstance() {
         session = null;
     }
@@ -25,6 +28,13 @@ public class Session {
         return session;
     }
     
+    public void setComponent(javax.swing.JFrame component) {
+        this.component = component;
+    }
     
+    public JFrame getComponent() {
+        return component;
+    }
     
+    public abstract void showDialog();
 }

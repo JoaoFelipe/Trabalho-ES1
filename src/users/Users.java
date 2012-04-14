@@ -25,6 +25,18 @@ public class Users {
     private Users() {
         list = new HashSet<User>();
         list.add(new Admin());
+//        try {
+//            Producer producer = new Producer("Producer", "producer@email.com", "producer", "1", "1");
+//            list.add(new Producer("Producer", "producer@email.com", "producer", "1", "1"));
+//            producer.publish("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "2");
+//            producer.publish("Innocence", "Punk Rock", "The Best Damn Thing", "Avril Lavigne", "10");
+//            producer.publish("She Wolf", "Nu-Disco, electropop", "She Wolf", "Shakira", "21");
+//            producer.publish("Loba", "Nu-Disco, electropop latin", "She Wolf", "Shakira", "5");
+//            producer.publish("Estoy Aqui", "Latin", "Piez Descalzos", "Shakira", "1");
+//            list.add(new Client("Cliente", "client@email.com", "client", "1", "1"));
+//        } catch (Exception e) {
+//            
+//        }
     }
     
     public static Users getInstance() {
@@ -68,6 +80,16 @@ public class Users {
     
     public boolean remove(User user) throws Exception {
         return list.remove(user);
+    }
+    
+    public List<Producer> getProducers() {
+        List<Producer> result = new ArrayList<Producer>();
+        for (User user : list) {
+            if (user instanceof Producer) {
+                result.add((Producer) user);
+            }
+        }
+        return result;
     }
     
     
