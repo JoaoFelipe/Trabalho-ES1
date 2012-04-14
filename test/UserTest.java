@@ -3,10 +3,13 @@
  * and open the template in the editor.
  */
 
+import credits.Credits;
+import musics.Music;
 import users.Producer;
 import users.Admin;
 import java.util.List;
 import java.util.Arrays;
+import musics.Catalog;
 import users.User;
 import users.Users;
 import org.junit.After;
@@ -38,6 +41,8 @@ public class UserTest {
     @Before
     public void setUp() {
         Users.eraseInstance();
+        Credits.eraseInstance();
+        Catalog.eraseInstance();
         Session.endSession();
     }
     
@@ -48,7 +53,7 @@ public class UserTest {
     @Test
     public void usersDefaultInstanceShouldCreateAnAdmin() throws Exception {
         Users users = Users.getInstance();
-        assertEquals(1, users.getUserCount());
+        assertEquals(1, users.count());
         User user = users.findByLogin("admin");
         assertNotNull(user);
         assertEquals(user.getName(), "Administrador");
@@ -109,7 +114,7 @@ public class UserTest {
         User user = new Client("Ana", "ana@email.com", "aninha", "123456", "123456");
         users.signUp(user);
         assertNotNull(users.findByLogin("aninha"));
-        assertEquals(2, users.getUserCount());
+        assertEquals(2, users.count());
     }
     
     @Test
@@ -122,7 +127,7 @@ public class UserTest {
         } catch (Exception e) {
             assertEquals("Este login já existe", e.getMessage());
         }
-        assertEquals(1, users.getUserCount());
+        assertEquals(1, users.count());
     }
     
     @Test
@@ -132,7 +137,7 @@ public class UserTest {
         User user = new Admin("Ana", "ana@email.com", "aninha", "123456", "123456");
         users.signUp(user);
         assertEquals(user, users.findByLogin("aninha"));
-        assertEquals(2, users.getUserCount());
+        assertEquals(2, users.count());
         assertEquals(user.getName(), "Ana");
         assertEquals(user.getEmail(), "ana@email.com");
         assertEquals(user.getLogin(), "aninha");
@@ -146,7 +151,7 @@ public class UserTest {
         User user = new Producer("Ana", "ana@email.com", "aninha", "123456", "123456");
         users.signUp(user);
         assertEquals(user, users.findByLogin("aninha"));
-        assertEquals(2, users.getUserCount());
+        assertEquals(2, users.count());
         assertEquals(user.getName(), "Ana");
         assertEquals(user.getEmail(), "ana@email.com");
         assertEquals(user.getLogin(), "aninha");
@@ -231,5 +236,65 @@ public class UserTest {
         Session.endSession();
         assertNull(Session.getInstance());
     }
+    
+    @Test
+    public void anAdminCanRemoveAProducerWithAllHisMusicsFromCatalogWithoutRemovingMusicsFromClientsThatBoughtTheMusics() throws Exception {
+        Users users = Users.getInstance();
+        Catalog catalog = Catalog.getInstance();
+        Producer producer = new Producer("Ana", "ana@email.com", "aninha", "123456", "123456");
+        Producer producer2 = new Producer("Bia", "bia@email.com", "bia", "123456", "123456");
+        Client client  = new Client("Carol", "carol@email.com", "carol", "123456", "123456");
+        users.signUp(producer);
+        users.signUp(producer2);
+        users.signUp(client);
+        Music m1 = producer.publish("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "0");
+        Music m2 = producer.publish("Innocence", "Punk Rock", "The Best Damn Thing", "Avril Lavigne", "0");
+        Music m3 = producer2.publish("She Wolf", "Nu-Disco, electropop", "She Wolf", "Shakira", "0");
+        producer2.publish("Loba", "Nu-Disco, electropop latin", "She Wolf", "Shakira", "0");
+        client.buy(m1);
+        client.buy(m2);
+        client.buy(m3);
+        Admin admin = (Admin) users.findByLogin("admin");
+        assertEquals(4, catalog.count());
+        assertEquals(4, users.count());
+        assertEquals(3, client.musicCount());
+        admin.removeProducer("aninha");
+        assertEquals(2, catalog.count());
+        assertEquals(3, users.count());
+        assertEquals(3, client.musicCount());
+    }
+    
+    @Test
+    public void onlyProducersCanBeRemoved() throws Exception {
+        Users users = Users.getInstance();
+        Catalog catalog = Catalog.getInstance();
+        Producer producer = new Producer("Ana", "ana@email.com", "aninha", "123456", "123456");
+        Producer producer2 = new Producer("Bia", "bia@email.com", "bia", "123456", "123456");
+        Client client  = new Client("Carol", "carol@email.com", "carol", "123456", "123456");
+        users.signUp(producer);
+        users.signUp(producer2);
+        users.signUp(client);
+        Music m1 = producer.publish("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "0");
+        Music m2 = producer.publish("Innocence", "Punk Rock", "The Best Damn Thing", "Avril Lavigne", "0");
+        Music m3 = producer2.publish("She Wolf", "Nu-Disco, electropop", "She Wolf", "Shakira", "0");
+        producer2.publish("Loba", "Nu-Disco, electropop latin", "She Wolf", "Shakira", "0");
+        client.buy(m1);
+        client.buy(m2);
+        client.buy(m3);
+        Admin admin = (Admin) users.findByLogin("admin");
+        assertEquals(4, catalog.count());
+        assertEquals(4, users.count());
+        assertEquals(3, client.musicCount());
+        try {
+            admin.removeProducer("carol");
+            assertFalse(true);
+        } catch (Exception e) {
+            assertEquals("Apenas produtores podem ser removidos", e.getMessage());
+        }
+        assertEquals(4, catalog.count());
+        assertEquals(4, users.count());
+        assertEquals(3, client.musicCount());
+    }
+    
     
 }

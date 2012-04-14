@@ -36,7 +36,7 @@ public class Users {
         instance = null;
     }
     
-    public int getUserCount() {
+    public int count() {
         return list.size();
     }
     
@@ -64,6 +64,9 @@ public class Users {
         return user;
     }
     
+    public boolean remove(User user) throws Exception {
+        return list.remove(user);
+    }
     
     
 }

@@ -30,4 +30,13 @@ public class Admin extends User {
         }
     }
     
+    public void removeProducer(String login) throws Exception {
+        User user = Users.getInstance().findByLogin(login);
+        if (!(user instanceof Producer)) {
+            throw new Exception("Apenas produtores podem ser removidos");
+        }
+        ((Producer) user).removeAllPublications();
+        Users.getInstance().remove(user);
+    }
+    
 }

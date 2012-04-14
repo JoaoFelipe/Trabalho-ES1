@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Core2-Joao" name="UserTest" tests="16" time="0.503" timestamp="2012-04-13T23:35:15">
+<testsuite errors="0" failures="0" hostname="Core2-Joao" name="UserTest" tests="16" time="0.32" timestamp="2012-04-14T03:34:36">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="BR" />
@@ -265,7 +265,6 @@
     <property name="org.openide.major.version" value="IDE/1" />
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
     <property name="netbeans.user" value="C:\Users\Joao\.netbeans\7.0" />
-    <property name="tests.failed" value="true" />
     <property name="javadoc.additionalparam" value="" />
     <property name="libs.ricoh-ant-utils.classpath" value="C:\Program Files\NetBeans 7.0.1\mobility\modules\ext\org-netbeans-modules-j2me-cdc-project-ricoh.jar;C:\Program Files\NetBeans 7.0.1\mobility\modules\ext\RicohAntTasks-2.0.jar;C:\Program Files\NetBeans 7.0.1\mobility\modules\ext\commons-httpclient-3.0.jar;C:\Program Files\NetBeans 7.0.1\ide\modules\ext\commons-logging-1.1.jar;C:\Program Files\NetBeans 7.0.1\mobility\modules\ext\commons-codec-1.3.jar" />
     <property name="java.io.tmpdir" value="C:\Users\Joao\AppData\Local\Temp\" />
@@ -282,6 +281,7 @@
     <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="libs.DataBindingME-SVG.src" value="C:\Program Files\NetBeans 7.0.1\mobility\sources\netbeans_databindingme_svg-src.zip" />
     <property name="dist.jar" value="dist/TrabalhoES1.jar" />
+    <property name="netbeans.automatic.build" value="true" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.project.name" value="TrabalhoES1" />
     <property name="netbeans.hash.code" value="unique=NB_CND_GFMOD_GROOVY_JAVA_JC_MOB_PHP_WEBEE07971660e-7aac-40a3-aeab-17dac015cb4a_7106bc25-d17f-403d-97d1-2e6535bee30c" />
@@ -466,21 +466,21 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="UserTest" name="usersDefaultInstanceShouldCreateAnAdmin" time="0.011" />
+  <testcase classname="UserTest" name="usersDefaultInstanceShouldCreateAnAdmin" time="0.0040" />
   <testcase classname="UserTest" name="itShouldBePossibleToCreateAValidClient" time="0.0010" />
-  <testcase classname="UserTest" name="userConstructorShouldValidateEmail" time="0.0" />
-  <testcase classname="UserTest" name="userConstructorShouldVerifyIfTheresAEmptyField" time="0.0010" />
-  <testcase classname="UserTest" name="userConstructorShouldValidateThePasswords" time="0.0010" />
-  <testcase classname="UserTest" name="clientCanSignUp" time="0.075" />
-  <testcase classname="UserTest" name="clientLoginShouldBeUnique" time="0.0010" />
-  <testcase classname="UserTest" name="itShouldBePossibleToCreateAValidAdmin" time="0.0010" />
+  <testcase classname="UserTest" name="userConstructorShouldValidateEmail" time="0.0010" />
+  <testcase classname="UserTest" name="userConstructorShouldVerifyIfTheresAEmptyField" time="0.0" />
+  <testcase classname="UserTest" name="userConstructorShouldValidateThePasswords" time="0.0" />
+  <testcase classname="UserTest" name="clientCanSignUp" time="0.0" />
+  <testcase classname="UserTest" name="clientLoginShouldBeUnique" time="0.0" />
+  <testcase classname="UserTest" name="itShouldBePossibleToCreateAValidAdmin" time="0.0" />
   <testcase classname="UserTest" name="itShouldBePossibleToCreateAValidProducer" time="0.0" />
-  <testcase classname="UserTest" name="itShouldBePossibleToLoginAUser" time="0.0010" />
+  <testcase classname="UserTest" name="itShouldBePossibleToLoginAUser" time="0.0" />
   <testcase classname="UserTest" name="loginShouldFailForInvalidLogin" time="0.0" />
-  <testcase classname="UserTest" name="loginShouldFailForInvalidPassword" time="0.0" />
-  <testcase classname="UserTest" name="itShouldBePossibleToChangeAUserPassword" time="0.094" />
-  <testcase classname="UserTest" name="itShouldNotChangeThePasswordIfTheOldPasswordIsWrong" time="0.0010" />
-  <testcase classname="UserTest" name="itShouldNotChangeThePasswordIfTheNewPasswordDontMatchTheRepetition" time="0.0010" />
+  <testcase classname="UserTest" name="loginShouldFailForInvalidPassword" time="0.085" />
+  <testcase classname="UserTest" name="itShouldBePossibleToChangeAUserPassword" time="0.0" />
+  <testcase classname="UserTest" name="itShouldNotChangeThePasswordIfTheOldPasswordIsWrong" time="0.0" />
+  <testcase classname="UserTest" name="itShouldNotChangeThePasswordIfTheNewPasswordDontMatchTheRepetition" time="0.0" />
   <testcase classname="UserTest" name="userSessionCanBeClosed" time="0.0020" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

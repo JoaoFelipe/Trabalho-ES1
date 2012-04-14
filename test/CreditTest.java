@@ -9,6 +9,7 @@ import users.Producer;
 import users.Admin;
 import java.util.List;
 import java.util.Arrays;
+import musics.Catalog;
 import users.User;
 import users.Users;
 import org.junit.After;
@@ -26,21 +27,15 @@ import static org.junit.Assert.*;
  */
 public class CreditTest {
     
-    public CreditTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+    Catalog catalog;
+    Credits credits;
+    Users users;
     
     @Before
     public void setUp() {
         Users.eraseInstance();
         Credits.eraseInstance();
+        Catalog.eraseInstance();
         Session.endSession();
     }
     

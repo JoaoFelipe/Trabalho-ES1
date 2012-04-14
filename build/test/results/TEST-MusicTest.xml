@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Core2-Joao" name="CreditTest" tests="13" time="0.307" timestamp="2012-04-14T03:34:34">
+<testsuite errors="0" failures="0" hostname="Core2-Joao" name="MusicTest" tests="17" time="0.411" timestamp="2012-04-14T03:34:35">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="BR" />
@@ -466,19 +466,23 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="CreditTest" name="itShouldBePossibleToCreateACredit" time="0.0070" />
-  <testcase classname="CreditTest" name="itShouldBePossibleToFigureTheCreditValueByCode" time="0.0" />
-  <testcase classname="CreditTest" name="creditMustBeIdentifiedByCode" time="0.067" />
-  <testcase classname="CreditTest" name="itShouldBePossibleToRegisterACredit" time="0.0010" />
-  <testcase classname="CreditTest" name="itShouldNotBePossibleToRegisterTheSameCreditTwice" time="0.0010" />
-  <testcase classname="CreditTest" name="itShouldBePossibleToGenerateNCredits" time="0.0010" />
-  <testcase classname="CreditTest" name="itShouldBePossibleToActivateACredit" time="0.0010" />
-  <testcase classname="CreditTest" name="aCreditMustNotBeFoundIfActiveButMustStillExistsToAvoidCodeRepetition" time="0.091" />
-  <testcase classname="CreditTest" name="itShouldBePossibleToActivateACreditByCode" time="0.0" />
-  <testcase classname="CreditTest" name="itShouldNotBePossibleToActivateAUnknownCode" time="0.0010" />
-  <testcase classname="CreditTest" name="clientCanAcquireCredits" time="0.0020" />
-  <testcase classname="CreditTest" name="adminCanGenerateCredits" time="0.0020" />
-  <testcase classname="CreditTest" name="adminCannotGenerateCreditsWhenCountOrValueIsInvalid" time="0.0" />
+  <testcase classname="MusicTest" name="itShouldBePossibleToCreateAMusic" time="0.0070" />
+  <testcase classname="MusicTest" name="musicConstructorShouldVerifyIfTheresAEmptyField" time="0.0010" />
+  <testcase classname="MusicTest" name="musicConstructorShouldVerifyIfPriceIsValid" time="0.0010" />
+  <testcase classname="MusicTest" name="itShouldBePossibleToPublishAMusicInCatalog" time="0.0010" />
+  <testcase classname="MusicTest" name="itShouldBePossibleToIncrementMusicPopularity" time="0.0010" />
+  <testcase classname="MusicTest" name="itShouldBePossibleToChangeMusicInformations" time="0.0" />
+  <testcase classname="MusicTest" name="itShouldBePossibleToRemoveAMusicFromCatalog" time="0.0010" />
+  <testcase classname="MusicTest" name="itShouldNotBePossibleToRemoveAMusicTwice" time="0.0" />
+  <testcase classname="MusicTest" name="aProducerCanPublishAMusic" time="0.0010" />
+  <testcase classname="MusicTest" name="aProducerCanChangeMusicInformationsIfHePublishedTheMusic" time="0.093" />
+  <testcase classname="MusicTest" name="aProducerCanRemoveMusicFromCatalogInformationsIfHePublishedTheMusic" time="0.0010" />
+  <testcase classname="MusicTest" name="musicMatchesSearchConditionIgnoreCase" time="0.0010" />
+  <testcase classname="MusicTest" name="filterCatalogForSearch" time="0.0030" />
+  <testcase classname="MusicTest" name="sortCatalogByField" time="0.0010" />
+  <testcase classname="MusicTest" name="aClientCanBuyAMusic" time="0.0030" />
+  <testcase classname="MusicTest" name="aClientCannotBuyTheSameMusicTwice" time="0.0020" />
+  <testcase classname="MusicTest" name="aClientCannotBuyTheAMusicIfItIsHighestThanHisCredits" time="0.0010" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
