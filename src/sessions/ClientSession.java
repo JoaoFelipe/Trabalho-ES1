@@ -39,7 +39,8 @@ public class ClientSession extends UserSession {
         try {
             if (JOptionPane.showConfirmDialog(component, "Você realmente deseja comprar a música "+music.getName()+"?", "Tchu Tcha Tcha Store", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 this.getClient().buy(music);
-                JOptionPane.showMessageDialog(component, "A música foi comprada com sucesso!", "Tchu Tcha Tcha Store", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(component, "A compra foi realizada com sucesso!", "Tchu Tcha Tcha Store", JOptionPane.INFORMATION_MESSAGE);
+                this.buildGreetings();
                 this.reloadMyMusic();
                 this.reloadCatalog();
             }
