@@ -197,4 +197,16 @@ public class PopulatedTest {
         assertEquals(3, client.musicCount());
     }
     
+    @Test
+    public void testPerformanceFilter10000musicsInLessThan10seconds() throws Exception {
+        for (int i = 0; i < 10000-5; i++) {
+            producer.publish(Credit.generateCode(i), Credit.generateCode(i), Credit.generateCode(i), Credit.generateCode(i), Math.round(Math.random()*100)+"");
+        }
+        long t = System.currentTimeMillis();
+        Music.sortMusicList(Music.filterMusicList(Catalog.getInstance().getCatalog(), "name", "10"), "price");
+        t = System.currentTimeMillis() - t;
+        assertTrue(t<10000);
+        System.out.println(t+"ms");
+    }
+    
 }
