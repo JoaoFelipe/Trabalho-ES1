@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package musics;
 
 import java.util.ArrayList;
@@ -10,10 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 import users.Producer;
 
-/**
- *
- * @author Joao
- */
 public class Music {
     
     private Producer producer;

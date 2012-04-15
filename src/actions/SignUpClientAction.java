@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package actions;
 
 import javax.swing.JDialog;
@@ -12,10 +8,6 @@ import sessions.UserSession;
 import users.Client;
 import users.Users;
 
-/**
- *
- * @author Joao
- */
 public class SignUpClientAction implements SignUpAction{
     
     LoginSession session;
@@ -41,6 +33,5 @@ public class SignUpClientAction implements SignUpAction{
     public void setSignUpDialog(JDialog dialog) {
         this.signUpDialog = dialog;
     }
-    
     
 }

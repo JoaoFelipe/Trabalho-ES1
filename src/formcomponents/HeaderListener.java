@@ -1,21 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package formcomponents;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
-/**
- *
- * @author Joao
- */
 public abstract class HeaderListener extends MouseAdapter {
     
     List<String> header;

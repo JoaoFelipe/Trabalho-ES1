@@ -1,14 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sessions;
 
 import actions.ChangeMusicAction;
 import actions.PublishAction;
-import java.awt.Component;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -17,7 +11,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import musics.Music;
 import formcomponents.PublicationsTableModel;
-import dialogs.ClientFrame;
 import formcomponents.DialogWithCatalogInterface;
 import formcomponents.DialogWithCreditsInterface;
 import formcomponents.HeaderListener;
@@ -25,14 +18,8 @@ import dialogs.ProducerFrame;
 import dialogs.PublishDialog;
 import formcomponents.TableButton;
 import formcomponents.TableButtonListener;
-import users.Client;
 import users.Producer;
-import users.User;
 
-/**
- *
- * @author Joao
- */
 public class ProducerSession extends UserSession {
     
     private List<Music> publications;

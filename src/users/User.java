@@ -1,15 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package users;
 
-import sessions.UserSession;
-
-/**
- *
- * @author casa
- */
 public abstract class User {
     
     private String name;
@@ -17,12 +7,6 @@ public abstract class User {
     private String login;
     private String password;
 
-    /**
-     * @param name
-     * @param email
-     * @param login
-     * @param password
-     */
     protected User(String name, String email, String login, String password) {
         this.name = name;
         this.email = email;
@@ -30,15 +14,6 @@ public abstract class User {
         this.password = password;
     }
 
-    /**
-     * 
-     * @param name
-     * @param email
-     * @param login
-     * @param password
-     * @param repeatPassword
-     * @throws Exception if email is invalid or if have an empty value or if the passwords doesn't match
-     */
     public User(String name, String email, String login, String password, String repeatPassword) throws Exception {
         this(name, email, login, password);
         if (name.isEmpty() || email.isEmpty() || login.isEmpty() || password.isEmpty()) {
@@ -52,40 +27,22 @@ public abstract class User {
         }
     }
     
-    /**
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * @return the email
-     */
     public String getEmail() {
         return email;
     }
 
-    /**
-     * @return the login
-     */
     public String getLogin() {
         return login;
     }
     
-    /**
-     * @param password Takes a password to be validated with the user password
-     * @return true if the password matches
-     */
     public boolean validatePassword(String password) {
         return this.password.equals(password);
     }
 
-    /**
-     * 
-     * @param obj Takes another User
-     * @return true if both users have the same login 
-     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

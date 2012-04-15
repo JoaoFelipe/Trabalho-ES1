@@ -1,21 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package users;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import sessions.Session;
 import sessions.LoginSession;
-import sessions.UserSession;
 
-/**
- *
- * @author casa
- */
 public class Users {
     
     private static Users instance;
@@ -74,7 +64,7 @@ public class Users {
         if (user == null || !user.validatePassword(password)) {
             throw new Exception("O login e/ou a senha estão incorretos");
         }
-        ((LoginSession) Session.getInstance()).startSession(user);
+        LoginSession.startSession(user);
         return user;
     }
     

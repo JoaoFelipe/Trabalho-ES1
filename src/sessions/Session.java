@@ -1,17 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sessions;
 
-import java.awt.Component;
 import javax.swing.JFrame;
-import users.User;
 
-/**
- *
- * @author Joao
- */
 public abstract class Session {
     
     public static Session session = null;

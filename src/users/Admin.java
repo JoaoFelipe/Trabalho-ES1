@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package users;
 
 import credits.Credits;
 
-/**
- *
- * @author casa
- */
 public class Admin extends User {
 
     public Admin() {

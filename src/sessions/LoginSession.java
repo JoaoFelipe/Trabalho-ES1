@@ -1,22 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sessions;
 
 import actions.SignUpClientAction;
-import java.awt.Component;
 import javax.swing.JOptionPane;
 import dialogs.LoginFrame;
 import dialogs.SignUpDialog;
-import users.Client;
 import users.User;
 import users.Users;
 
-/**
- *
- * @author Joao
- */
 public class LoginSession extends Session {
 
     public static Session startSession(User user) {

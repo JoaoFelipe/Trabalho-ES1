@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package actions;
 
 import javax.swing.JDialog;
 import sessions.ProducerSession;
 
-/**
- *
- * @author Joao
- */
 public abstract class MusicInformationAction {
     
     ProducerSession session;

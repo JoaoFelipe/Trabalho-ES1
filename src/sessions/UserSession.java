@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sessions;
 
 import actions.ChangePasswordAction;
@@ -22,10 +18,6 @@ import users.Client;
 import users.Producer;
 import users.User;
 
-/**
- *
- * @author Joao
- */
 public abstract class UserSession extends Session {
     
     public static final Map<String, String> map = new HashMap<String, String>(){

@@ -1,18 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package musics;
 
-import credits.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- *
- * @author Joao
- */
 public class Catalog {
     
     private static Catalog instance;
@@ -48,7 +39,6 @@ public class Catalog {
     public boolean removeAll(Collection<Music> musics) {
         return list.removeAll(musics);
     }
-    
     
     public List<Music> getCatalog() {
         return list;

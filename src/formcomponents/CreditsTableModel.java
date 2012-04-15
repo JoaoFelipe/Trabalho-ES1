@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package formcomponents;
 
 import credits.Credit;
@@ -9,10 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Joao
- */
 public class CreditsTableModel extends DefaultTableModel {
 
     public CreditsTableModel(List<Credit> credits) {

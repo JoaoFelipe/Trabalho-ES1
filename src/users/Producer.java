@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package users;
 
 import java.util.ArrayList;
@@ -9,10 +5,6 @@ import java.util.List;
 import musics.Catalog;
 import musics.Music;
 
-/**
- *
- * @author casa
- */
 public class Producer extends User {
     
     private List<Music> publications;

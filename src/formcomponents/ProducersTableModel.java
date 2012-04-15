@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package formcomponents;
 
 import java.util.Arrays;
@@ -9,10 +5,6 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import users.Producer;
 
-/**
- *
- * @author Joao
- */
 public class ProducersTableModel extends DefaultTableModel {
 
     public ProducersTableModel(List<Producer> producers) {
@@ -35,10 +27,12 @@ public class ProducersTableModel extends DefaultTableModel {
         false, false, false, true
     };
 
+    @Override
     public Class getColumnClass(int columnIndex) {
         return types [columnIndex];
     }
 
+    @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return canEdit [columnIndex];
     }

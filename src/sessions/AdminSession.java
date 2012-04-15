@@ -1,23 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sessions;
 
 import actions.GenerateCreditsAction;
 import actions.SignUpAdminAction;
 import actions.SignUpProducerAction;
-import actions.SignUpAction;
-import credits.Credit;
 import credits.Credits;
-import java.awt.Component;
-import java.util.Arrays;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import musics.Music;
 import formcomponents.CreditsTableModel;
 import formcomponents.ProducersTableModel;
 import dialogs.AdminFrame;
@@ -27,15 +17,8 @@ import dialogs.SignUpDialog;
 import formcomponents.TableButton;
 import formcomponents.TableButtonListener;
 import users.Admin;
-import users.Client;
-import users.Producer;
-import users.User;
 import users.Users;
 
-/**
- *
- * @author Joao
- */
 public class AdminSession extends UserSession {
     
     public AdminSession(Admin admin) {

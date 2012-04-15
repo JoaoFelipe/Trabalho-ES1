@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package users;
 
 import credits.Credit;
@@ -10,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import musics.Music;
 
-/**
- *
- * @author casa
- */
 public class Client extends User {
 
     private int credits;

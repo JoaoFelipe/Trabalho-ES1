@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Core2-Joao" name="PopulatedTest" tests="9" time="0.161" timestamp="2012-04-15T03:58:31">
+<testsuite errors="0" failures="0" hostname="Core2-Joao" name="PopulatedTest" tests="9" time="0.281" timestamp="2012-04-15T04:08:15">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="BR" />
@@ -280,7 +280,6 @@
     <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="libs.DataBindingME-SVG.src" value="C:\Program Files\NetBeans 7.0.1\mobility\sources\netbeans_databindingme_svg-src.zip" />
     <property name="dist.jar" value="dist/TrabalhoES1.jar" />
-    <property name="netbeans.automatic.build" value="true" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.project.name" value="TrabalhoES1" />
     <property name="netbeans.hash.code" value="unique=NB_CND_GFMOD_GROOVY_JAVA_JC_MOB_PHP_WEBEE07971660e-7aac-40a3-aeab-17dac015cb4a_7106bc25-d17f-403d-97d1-2e6535bee30c" />
@@ -302,8 +301,8 @@
     <property name="libs.JWSAntTasks.src" value="" />
     <property name="libs.CopyLibs.maven-pom" value="" />
     <property name="jar.index" value="false" />
-    <property name="libs.absolutelayout.javadoc" value="" />
     <property name="libs.hibernate-persistence.maven-pom" value="" />
+    <property name="libs.absolutelayout.javadoc" value="" />
     <property name="libs.spring-framework300.javadoc" value="" />
     <property name="java.specification.name" value="Java Platform API Specification" />
     <property name="guice.disable.misplaced.annotation.check" value="true" />
@@ -322,8 +321,8 @@
     <property name="libs.MySQLDriver.javadoc" value="" />
     <property name="org.openide.version" value="deprecated" />
     <property name="libs.restlib_gfv3ee6.maven-pom" value="" />
-    <property name="source.encoding" value="UTF-8" />
     <property name="libs.ActiveSync.maven-pom" value="" />
+    <property name="source.encoding" value="UTF-8" />
     <property name="ap.cmd.line.internal" value="" />
     <property name="libs.eclipselinkmodelgen.maven-pom" value="" />
     <property name="platforms.Java_TM__Platform_Micro_Edition_SDK_3_0.home" value="C:\Program Files\NetBeans 7.0.1\mobility\Java_ME_platform_SDK_3.0" />
@@ -342,8 +341,8 @@
     <property name="libs.jaxb.classpath" value="C:\Program Files\NetBeans 7.0.1\ide\modules\ext\jaxb\jaxb-impl.jar;C:\Program Files\NetBeans 7.0.1\ide\modules\ext\jaxb\jaxb-xjc.jar;C:\Program Files\NetBeans 7.0.1\ide\modules\ext\jaxb\jaxb1-impl.jar;C:\Program Files\NetBeans 7.0.1\ide\modules\ext\jaxb\activation.jar;C:\Program Files\NetBeans 7.0.1\ide\modules\ext\jaxb\api\jaxb-api.jar;C:\Program Files\NetBeans 7.0.1\ide\modules\ext\jaxb\api\jsr173_api.jar" />
     <property name="do.depend" value="false" />
     <property name="dist.javadoc.dir" value="dist/javadoc" />
-    <property name="libs.swing-layout.classpath" value="C:\Program Files\NetBeans 7.0.1\platform\modules\ext\swing-layout-1.0.4.jar" />
     <property name="libs.spring-webmvc3.0.classpath" value="C:\Program Files\NetBeans 7.0.1\java\modules\ext\spring-3.0\spring-webmvc-3.0.2.RELEASE.jar" />
+    <property name="libs.swing-layout.classpath" value="C:\Program Files\NetBeans 7.0.1\platform\modules\ext\swing-layout-1.0.4.jar" />
     <property name="libs.restlib.src" value="" />
     <property name="build.generated.dir" value="build/generated" />
     <property name="javac.source" value="1.5" />
@@ -351,8 +350,8 @@
     <property name="line.separator" value="&#xd;&#xa;" />
     <property name="libs.nb_svg_midp_components.javadoc" value="C:\Program Files\NetBeans 7.0.1\mobility\modules\docs\nb_svg_midp_components-api.zip" />
     <property name="java.specification.version" value="1.6" />
-    <property name="java.vm.info" value="mixed mode" />
     <property name="libs.jaxws21.maven-pom" value="" />
+    <property name="java.vm.info" value="mixed mode" />
     <property name="libs.cdc-ant-utils.javadoc" value="" />
     <property name="junit.forkmode" value="perTest" />
     <property name="libs.ojec-ant-utils.classpath" value="C:\Program Files\NetBeans 7.0.1\mobility\modules\ext\org-netbeans-modules-j2me-cdc-project-ojec.jar" />
@@ -363,8 +362,8 @@
     <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="platforms.Java_TM__Platform_Micro_Edition_SDK_3_0.debugcommandline" value="" />
     <property name="src.dir" value="src" />
-    <property name="sun.awt.keepWorkingSetOnMinimize" value="true" />
     <property name="annotation.processing.enabled" value="true" />
+    <property name="sun.awt.keepWorkingSetOnMinimize" value="true" />
     <property name="libs.jsf20.src" value="" />
     <property name="libs.DataBindingME-SVG.maven-pom" value="" />
     <property name="libs.jsf12.src" value="" />
@@ -380,15 +379,15 @@
     <property name="dist.dir" value="dist" />
     <property name="libs.groovy-all.javadoc" value="" />
     <property name="do.archive+manifest.available+main.class" value="true" />
-    <property name="libs.sjmc-ant-utils.classpath" value="C:\Program Files\NetBeans 7.0.1\mobility\modules\ext\org-netbeans-modules-j2me-cdc-project-sjmc.jar" />
     <property name="libs.groovy-all.classpath" value="C:\Program Files\NetBeans 7.0.1\groovy\modules\ext\groovy-all.jar" />
     <property name="javac.fork" value="true" />
+    <property name="libs.sjmc-ant-utils.classpath" value="C:\Program Files\NetBeans 7.0.1\mobility\modules\ext\org-netbeans-modules-j2me-cdc-project-sjmc.jar" />
     <property name="libs.JMUnit4CLDC10.classpath" value="C:\Program Files\NetBeans 7.0.1\mobility\modules\ext\jmunit4cldc10-1.2.1.jar" />
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
     <property name="default.javac.source" value="1.6" />
     <property name="debug-transport-by-os" value="dt_shmem" />
-    <property name="libs.MySQLDriver.src" value="" />
     <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="libs.MySQLDriver.src" value="" />
     <property name="libs.ant-contrib.maven-pom" value="" />
     <property name="libs.nokiadeployment.javadoc" value="" />
     <property name="build.test.results.dir" value="build/test/results" />
@@ -407,8 +406,8 @@
     <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
     <property name="netbeans.dirs" value="C:\Program Files\NetBeans 7.0.1\nb;C:\Program Files\NetBeans 7.0.1\ergonomics;C:\Program Files\NetBeans 7.0.1\ide;C:\Program Files\NetBeans 7.0.1\java;C:\Program Files\NetBeans 7.0.1\xml;C:\Program Files\NetBeans 7.0.1\apisupport;C:\Program Files\NetBeans 7.0.1\webcommon;C:\Program Files\NetBeans 7.0.1\websvccommon;C:\Program Files\NetBeans 7.0.1\enterprise;C:\Program Files\NetBeans 7.0.1\mobility;C:\Program Files\NetBeans 7.0.1\profiler;C:\Program Files\NetBeans 7.0.1\ruby;C:\Program Files\NetBeans 7.0.1\python;C:\Program Files\NetBeans 7.0.1\php;C:\Program Files\NetBeans 7.0.1\visualweb;C:\Program Files\NetBeans 7.0.1\soa;C:\Program Files\NetBeans 7.0.1\identity;C:\Program Files\NetBeans 7.0.1\uml;C:\Program Files\NetBeans 7.0.1\harness;C:\Program Files\NetBeans 7.0.1\cnd;C:\Program Files\NetBeans 7.0.1\dlight;C:\Program Files\NetBeans 7.0.1\groovy;C:\Program Files\NetBeans 7.0.1\extra;C:\Program Files\NetBeans 7.0.1\javafx;C:\Program Files\NetBeans 7.0.1\javacard" />
     <property name="libs.jsf20.javadoc" value="C:\Program Files\NetBeans 7.0.1\enterprise\docs\javaee6-doc-api.zip" />
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.6.0_24\jre\lib\ext;C:\Windows\Sun\Java\lib\ext" />
     <property name="libs.restlib_gfv3ee6.src" value="" />
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.6.0_24\jre\lib\ext;C:\Windows\Sun\Java\lib\ext" />
     <property name="libs.metro.src" value="" />
     <property name="libs.savaje-ant-utils.maven-pom" value="" />
     <property name="libs.semc-ant-utils.src" value="" />
@@ -447,8 +446,8 @@
     <property name="libs.spring-webmvc.maven-pom" value="" />
     <property name="run.jvmargs" value="" />
     <property name="libs.ejb3-persistence.classpath" value="C:\Program Files\NetBeans 7.0.1\java\modules\ext\hibernate\ejb3-persistence.jar" />
-    <property name="platforms.Java_TM__Platform_Micro_Edition_SDK_3_0.type" value="UEI-1.0.1" />
     <property name="libs.spring-framework.javadoc" value="" />
+    <property name="platforms.Java_TM__Platform_Micro_Edition_SDK_3_0.type" value="UEI-1.0.1" />
     <property name="libs.DataBindingME-PIM.src" value="C:\Program Files\NetBeans 7.0.1\mobility\sources\netbeans_databindingme_pim-src.zip" />
     <property name="libs.PostgreSQLDriver.classpath" value="C:\Program Files\NetBeans 7.0.1\ide\modules\ext\postgresql-8.3-603.jdbc3.jar" />
     <property name="libs.jsf12.maven-pom" value="" />
@@ -458,21 +457,21 @@
     <property name="build.dir" value="build" />
     <property name="libs.jsp-compilation.classpath" value="C:\Program Files\NetBeans 7.0.1\java\ant\lib\ant.jar;C:\Program Files\NetBeans 7.0.1\enterprise\modules\ext\servlet3.0-jsp2.2-api.jar;C:\Program Files\NetBeans 7.0.1\enterprise\modules\ext\glassfish-jspparser-3.0.jar;C:\Program Files\NetBeans 7.0.1\enterprise\modules\ext\jsf-2_1\jsf-api.jar;C:\Program Files\NetBeans 7.0.1\enterprise\modules\ext\jstl.jar;C:\Program Files\NetBeans 7.0.1\java\ant\lib\ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.8.2 compiled on December 20 2010" />
-    <property name="file.encoding" value="Cp1252" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
+    <property name="file.encoding" value="Cp1252" />
     <property name="jdkBug6558476" value="true" />
     <property name="javadoc.nonavbar" value="false" />
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="PopulatedTest" name="testMusicMatchesSearchConditionIgnoringCase" time="0.0080" />
-  <testcase classname="PopulatedTest" name="testFilterMusicListAndCatalogForSearch" time="0.0040" />
-  <testcase classname="PopulatedTest" name="testSortMusicListAndCatalogByField" time="0.022" />
+  <testcase classname="PopulatedTest" name="testMusicMatchesSearchConditionIgnoringCase" time="0.011" />
+  <testcase classname="PopulatedTest" name="testFilterMusicListAndCatalogForSearch" time="0.0030" />
+  <testcase classname="PopulatedTest" name="testSortMusicListAndCatalogByField" time="0.068" />
   <testcase classname="PopulatedTest" name="testClientCanBuyMusic" time="0.0010" />
   <testcase classname="PopulatedTest" name="testProducerReceiveTheCreditIfTheMusicValueIs1" time="0.0010" />
   <testcase classname="PopulatedTest" name="testClientCannotBuyTheSameMusicTwice" time="0.0010" />
-  <testcase classname="PopulatedTest" name="testClientCannotBuyAMusicIfItsPriceIsHighestThanHisCredits" time="0.0010" />
-  <testcase classname="PopulatedTest" name="testRemoveProducer" time="0.0010" />
+  <testcase classname="PopulatedTest" name="testClientCannotBuyAMusicIfItsPriceIsHighestThanHisCredits" time="0.092" />
+  <testcase classname="PopulatedTest" name="testRemoveProducer" time="0.0" />
   <testcase classname="PopulatedTest" name="testOnlyProducersCanBeRemoved" time="0.0010" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

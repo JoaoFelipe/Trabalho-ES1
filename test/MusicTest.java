@@ -9,7 +9,6 @@ import users.Users;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sessions.UserSession;
 import static org.junit.Assert.*;
 
 public class MusicTest {

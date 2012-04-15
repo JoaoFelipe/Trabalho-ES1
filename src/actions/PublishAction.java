@@ -1,17 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package actions;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import sessions.ProducerSession;
 
-/**
- *
- * @author Joao
- */
 public class PublishAction extends MusicInformationAction {
     
     public PublishAction(ProducerSession session) {

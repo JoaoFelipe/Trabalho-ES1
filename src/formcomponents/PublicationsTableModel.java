@@ -1,19 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package formcomponents;
 
-import credits.Credit;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import musics.Music;
 
-/**
- *
- * @author Joao
- */
 public class PublicationsTableModel extends DefaultTableModel {
 
     public PublicationsTableModel(List<Music> catalog) {
@@ -36,10 +27,12 @@ public class PublicationsTableModel extends DefaultTableModel {
         false, false, false, false, false, false, true, true
     };
 
+    @Override
     public Class getColumnClass(int columnIndex) {
         return types [columnIndex];
     }
 
+    @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return canEdit [columnIndex];
     }
