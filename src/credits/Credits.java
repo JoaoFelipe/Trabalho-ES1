@@ -28,17 +28,13 @@ public class Credits {
     
     public boolean hasCredit(String code) {
         Credit credit = new Credit(code);
-        return list.contains(credit);
+        return this.getList().contains(credit);
     }
     
     public boolean register(Credit credit) {
-        return list.add(credit);
+        return this.getList().add(credit);
     }
     
-    public int count() {
-        return list.size();
-    }
-
     public void generate(int count, int value) {
         for (int i = 0; i < count; i++) {
             this.register(new Credit(value));
@@ -46,8 +42,8 @@ public class Credits {
     }
     
     public Credit find(String code) {
-        for (Credit credit : list) {
-            if (credit.getCode().equals(code) && !credit.isActive()) {
+        for (Credit credit : this.getList()) {
+            if (credit.getCode().equals(code) && !credit.isActivated()) {
                 return credit;
             }
         }
@@ -65,8 +61,8 @@ public class Credits {
     
     public List<Credit> getCredits() {
         List<Credit> result = new ArrayList<Credit>();
-        for (Credit credit : list) {
-            if (!credit.isActive()) {
+        for (Credit credit : this.getList()) {
+            if (!credit.isActivated()) {
                 result.add(credit);
             }
         }
@@ -78,6 +74,10 @@ public class Credits {
             
         });
         return result;
+    }
+
+    public HashSet<Credit> getList() {
+        return list;
     }
     
 }

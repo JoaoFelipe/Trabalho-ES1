@@ -3,7 +3,6 @@ package sessions;
 import actions.ChangeMusicAction;
 import actions.PublishAction;
 import java.util.Arrays;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -18,11 +17,12 @@ import dialogs.ProducerFrame;
 import dialogs.PublishDialog;
 import formcomponents.TableButton;
 import formcomponents.TableButtonListener;
+import musics.MusicList;
 import users.Producer;
 
 public class ProducerSession extends UserSession {
     
-    private List<Music> publications;
+    private MusicList publications;
     private String publicationsFilterField = "";
     private String publicationsFilterKeywords = "";
     private String publicationsSortField = "";
@@ -48,8 +48,8 @@ public class ProducerSession extends UserSession {
     
     public void reloadPublications() {
         publications = getProducer().getPublications();
-        publications = Music.filterMusicList(publications, publicationsFilterField, publicationsFilterKeywords);
-        publications = Music.sortMusicList(publications, publicationsSortField);
+        publications = publications.filter(publicationsFilterField, publicationsFilterKeywords);
+        publications = publications.sort(publicationsSortField);
         this.buildPublications();
     }
     
@@ -61,7 +61,7 @@ public class ProducerSession extends UserSession {
     
     public void sortPublications(String field) {
         publicationsSortField = map.get(field);
-        publications = Music.sortMusicList(publications, publicationsSortField);
+        publications = publications.sort(publicationsSortField);
         this.buildPublications();
     }
     

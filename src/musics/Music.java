@@ -1,9 +1,5 @@
 package musics;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import users.Producer;
 
 public class Music {
@@ -42,11 +38,33 @@ public class Music {
     
     public void change(String name, String genre, String album, String artist, String price) throws Exception {
         validateInformations(name, genre, album, artist, price);
-        this.name = name;
-        this.genre = genre;
-        this.album = album;
-        this.artist = artist;
-        this.price = Integer.parseInt(price);
+        this.setName(name);
+        this.setGenre(genre);
+        this.setAlbum(album);
+        this.setArtist(artist);
+        this.setPrice(Integer.parseInt(price));
+    }
+    
+    public Comparable mapField(String field) {
+        return  field.equals("name")  ? this.getName()  :
+                field.equals("album") ? this.getAlbum() :
+                field.equals("artist")? this.getArtist():
+                field.equals("genre") ? this.getGenre() :
+                field.equals("price") ? new Integer(-this.getPrice()) :
+                field.equals("popularity") ? new Integer(-this.getPopularity()) :
+                "";
+    }
+    
+    public String mapFieldForFilter(String field) {
+        return mapField(field)+"";
+    }
+    
+    public boolean match(String field, String keywords) {
+        return mapFieldForFilter(field).toUpperCase().contains(keywords.toUpperCase());
+    }
+    
+    public void increasePopularity() {
+        this.setPopularity(this.getPopularity() + 1);
     }
     
     public String getAlbum() {
@@ -77,51 +95,29 @@ public class Music {
         return producer;
     }
 
-    public void increasePopularity() {
-        this.popularity += 1;
+    public void setAlbum(String album) {
+        this.album = album;
     }
-    
-    public Comparable mapField(String field) {
-        return  field.equals("name")  ? this.getName()  :
-                field.equals("album") ? this.getAlbum() :
-                field.equals("artist")? this.getArtist():
-                field.equals("genre") ? this.getGenre() :
-                field.equals("price") ? new Integer(-this.getPrice()) :
-                field.equals("popularity") ? new Integer(-this.getPopularity()) :
-                "";
-    }
-    
-    public String mapFieldForFilter(String field) {
-        return mapField(field)+"";
-    }
-    
-    public boolean match(String field, String keywords) {
-        return mapFieldForFilter(field).toUpperCase().contains(keywords.toUpperCase());
-    }
-    
-    public static List<Music> filterMusicList(List<Music> list, String field, String keywords) {
-        List<Music> result = new ArrayList<Music>();
-        for (Music music : list) {
-            if (music.match(field, keywords)) {
-                result.add(music);
-            }
-        }
-        return result;
-    }
-    
-    public static List<Music> sortMusicList(List<Music> list, final String field) {
-        List<Music> result = new ArrayList(list);
-        Collections.sort(result, comparatorForField(field));
-        return result;
-    }
-    
-    private static Comparator<Music> comparatorForField(final String field) {
-        return new Comparator<Music>(){
 
-            public int compare(Music o1, Music o2) {
-                return o1.mapField(field).compareTo(o2.mapField(field));
-            }
-        };
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
-    
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+
 }

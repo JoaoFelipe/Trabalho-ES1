@@ -54,30 +54,30 @@ public class CreditTest {
     @Test
     public void testRegisterCredit() throws Exception {
         Credit credit = new Credit(10);
-        assertEquals(0, credits.count());
+        assertEquals(0, credits.getList().size());
         assertFalse(credits.hasCredit(credit.getCode()));
         assertTrue(credits.register(credit));
         assertTrue(credits.hasCredit(credit.getCode()));
-        assertEquals(1, credits.count());
+        assertEquals(1, credits.getList().size());
     }
     
     @Test
     public void testNotAllowToRegisterTheSameCreditTwice() throws Exception {
         Credit credit = new Credit(10);
-        assertEquals(0, credits.count());
+        assertEquals(0, credits.getList().size());
         assertFalse(credits.hasCredit(credit.getCode()));
         assertTrue(credits.register(credit));
         assertTrue(credits.hasCredit(credit.getCode()));
         assertFalse(credits.register(credit));
         assertFalse(credits.register(new Credit(credit.getCode())));
         assertTrue(credits.hasCredit(credit.getCode()));
-        assertEquals(1, credits.count());
+        assertEquals(1, credits.getList().size());
     }
 
     @Test
     public void testGenerateNCredits() throws Exception {
         credits.generate(5, 25);
-        assertEquals(5, credits.count());
+        assertEquals(5, credits.getList().size());
     }
     
     @Test
@@ -85,9 +85,9 @@ public class CreditTest {
         Credit credit = new Credit(25);
         credits.register(credit);
         credit = credits.find(credit.getCode());
-        assertFalse(credit.isActive());
+        assertFalse(credit.isActivated());
         credit.activate();
-        assertTrue(credit.isActive());
+        assertTrue(credit.isActivated());
     }
     
     @Test
@@ -105,9 +105,9 @@ public class CreditTest {
     public void testActivateCreditByCode() throws Exception {
         Credit credit = new Credit(25);
         credits.register(credit);
-        assertFalse(credit.isActive());
+        assertFalse(credit.isActivated());
         credits.activate(credit.getCode());
-        assertTrue(credit.isActive());
+        assertTrue(credit.isActivated());
     }
     
     @Test
@@ -115,37 +115,37 @@ public class CreditTest {
         Credit credit = new Credit(25);
         credits.register(credit);
         credit.activate();
-        assertTrue(credit.isActive());
+        assertTrue(credit.isActivated());
         try {
             credits.activate(credit.getCode());
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("O código digitado não existe", e.getMessage());
         }
-        assertTrue(credit.isActive());
+        assertTrue(credit.isActivated());
     }
     
     @Test
     public void testClientCanAcquireCredits() throws Exception {
         Credit credit = new Credit(25);
         credits.register(credit);
-        assertFalse(credit.isActive());
+        assertFalse(credit.isActivated());
         assertEquals(0, client.getCredits());
         client.acquireCredits(credit.getCode());
         assertEquals(25, client.getCredits());
-        assertTrue(credit.isActive());
+        assertTrue(credit.isActivated());
     }
     
     @Test
     public void testAdminCanGenerateCredits() throws Exception {
-        assertEquals(0, credits.count());
+        assertEquals(0, credits.getList().size());
         admin.generateCredits("5", "25");
-        assertEquals(5, credits.count());
+        assertEquals(5, credits.getList().size());
     }
     
     @Test
     public void testAdminCannotGenerateCreditsWhenCountOrValueIsInvalid() throws Exception {
-        assertEquals(0, credits.count());
+        assertEquals(0, credits.getList().size());
         try {
             admin.generateCredits("a", "25");
             assertFalse(true);
@@ -158,12 +158,12 @@ public class CreditTest {
         } catch (Exception e) {
             assertEquals("As informações digitadas estão inconsistentes", e.getMessage());
         }
-        assertEquals(0, credits.count());
+        assertEquals(0, credits.getList().size());
     }
     
     @Test
     public void testNegativeValueOrCountAreInvalid() throws Exception {
-        assertEquals(0, credits.count());
+        assertEquals(0, credits.getList().size());
         try {
             admin.generateCredits("-5", "25");
             assertFalse(true);
@@ -176,7 +176,7 @@ public class CreditTest {
         } catch (Exception e) {
             assertEquals("As informações digitadas estão inconsistentes", e.getMessage());
         }
-        assertEquals(0, credits.count());
+        assertEquals(0, credits.getList().size());
     }
     
 }

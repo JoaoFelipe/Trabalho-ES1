@@ -1,7 +1,5 @@
 package credits;
 
-import java.util.Arrays;
-
 public class Credit {
     
     private static final char[] CHARLIST = {
@@ -43,20 +41,8 @@ public class Credit {
         return result;
     }
     
-    public String getCode() {
-        return code;
-    }
-
-    public int getValue() {
-        return value;
-    }
-    
-    public boolean isActive() {
-        return activated;
-    }
-    
     public void activate() {
-        activated = true;
+        this.setActivated(true);
     }
     
     @Override
@@ -69,10 +55,10 @@ public class Credit {
         }
 
         final Credit other = (Credit) obj;
-        if (this.value != other.value) {
+        if (this.getValue() != other.getValue()) {
             return false;
         }
-        if ((this.code == null) ? (other.code != null) : !this.code.equals(other.code)) {
+        if ((this.getCode() == null) ? (other.getCode() != null) : !this.getCode().equals(other.getCode())) {
             return false;
         }
         return true;
@@ -83,8 +69,20 @@ public class Credit {
         return this.value + 31*this.code.hashCode();
     }
     
-    public Object[] tuple() {
-        return Arrays.asList(this.code, this.value).toArray();
+    public String getCode() {
+        return code;
+    }
+
+    public int getValue() {
+        return value;
+    }
+    
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
     
 }

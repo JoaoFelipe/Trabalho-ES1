@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import sessions.LoginSession;
 
 public class Users {
     
     private static Users instance;
     
-    private Set<User> list;
+    private Set<User> userList;
+    
+    private User loggedUser = null;
     
     private Users() {
-        list = new HashSet<User>();
-        list.add(new Admin());
+        userList = new HashSet<User>();
+        userList.add(new Admin());
 //        try {
 //            Producer producer = new Producer("Producer", "producer@email.com", "producer", "1", "1");
 //            list.add(new Producer("Producer", "producer@email.com", "producer", "1", "1"));
@@ -40,12 +41,8 @@ public class Users {
         instance = null;
     }
     
-    public int count() {
-        return list.size();
-    }
-    
     public User findByLogin(String login) {
-        for (User user : list) {
+        for (User user : this.getUserList()) {
             if (user.getLogin().equals(login)) {
                 return user;
             }
@@ -53,10 +50,28 @@ public class Users {
         return null;
     }
     
-    public void signUp(User user) throws Exception {
-        if (!list.add(user)) {
+    private void signUp(User user) throws Exception {
+        if (!this.getUserList().add(user)) {
             throw new Exception("Este login já existe");
         }
+    }
+    
+    public Client signUpClient(String name, String email, String login, String password, String repeatPassword) throws Exception {
+        Client client = new Client(name, email, login, password, repeatPassword);
+        this.signUp(client);
+        return client;
+    }
+    
+    public Admin signUpAdmin(String name, String email, String login, String password, String repeatPassword) throws Exception {
+        Admin admin = new Admin(name, email, login, password, repeatPassword);
+        this.signUp(admin);
+        return admin;
+    }
+    
+    public Producer signUpProducer(String name, String email, String login, String password, String repeatPassword) throws Exception {
+        Producer producer = new Producer(name, email, login, password, repeatPassword);
+        this.signUp(producer);
+        return producer;
     }
     
     public User login(String login, String password) throws Exception {
@@ -64,23 +79,38 @@ public class Users {
         if (user == null || !user.validatePassword(password)) {
             throw new Exception("O login e/ou a senha estão incorretos");
         }
-        LoginSession.startSession(user);
+        this.setLoggedUser(user);
         return user;
     }
     
+    public void logout() {
+        this.setLoggedUser(null);
+    }
+    
     public boolean remove(User user) throws Exception {
-        return list.remove(user);
+        return this.getUserList().remove(user);
     }
     
     public List<Producer> getProducers() {
         List<Producer> result = new ArrayList<Producer>();
-        for (User user : list) {
+        for (User user : this.getUserList()) {
             if (user instanceof Producer) {
                 result.add((Producer) user);
             }
         }
         return result;
     }
-    
+
+    public User getLoggedUser() {
+        return loggedUser;
+    }
+
+    private void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
+    public Set<User> getUserList() {
+        return userList;
+    }
     
 }

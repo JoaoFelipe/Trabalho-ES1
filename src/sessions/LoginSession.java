@@ -9,15 +9,15 @@ import users.Users;
 
 public class LoginSession extends Session {
 
-    public static Session startSession(User user) {
-        session = UserSession.create(user);
+    public static Session startUserSession() {
+        session = UserSession.create();
         return session;
     }
     
     public Session login(String login, String password) {
         try {
             User user = Users.getInstance().login(login, password);
-            ((UserSession) session).showDialog();
+            LoginSession.startUserSession().showDialog();
             component.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(component, e.getMessage(), "Tchu Tcha Tcha Store", JOptionPane.ERROR_MESSAGE);

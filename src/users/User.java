@@ -27,20 +27,8 @@ public abstract class User {
         }
     }
     
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-    
     public boolean validatePassword(String password) {
-        return this.password.equals(password);
+        return this.getPassword().equals(password);
     }
 
     @Override
@@ -53,7 +41,7 @@ public abstract class User {
         }
 
         final User other = (User) obj;
-        if ((this.login == null) ? (other.login != null) : !this.login.equals(other.login)) {
+        if ((this.getLogin() == null) ? (other.getLogin() != null) : !this.getLogin().equals(other.getLogin())) {
             return false;
         }
         return true;
@@ -61,7 +49,7 @@ public abstract class User {
     
     @Override
     public int hashCode() {
-        return this.login.hashCode();
+        return this.getLogin().hashCode();
     }
 
     public void changePassword(String oldPassword, String newPassword, String repeatNewPassword) throws Exception {
@@ -71,7 +59,27 @@ public abstract class User {
         if (!newPassword.equals(repeatNewPassword)) {
             throw new Exception("A senha nova não coincide com a repetição da senha");
         }
-        this.password = newPassword;
+        this.setPassword(newPassword);
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+    
+    private String getPassword() {
+        return password;
+    }
+    
+    private void setPassword(String password) {
+        this.password = password;
     }
     
 }

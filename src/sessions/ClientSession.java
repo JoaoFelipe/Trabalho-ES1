@@ -2,7 +2,6 @@ package sessions;
 
 import actions.AcquireCreditsAction;
 import java.util.Arrays;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -18,11 +17,12 @@ import formcomponents.DialogWithCreditsInterface;
 import formcomponents.HeaderListener;
 import formcomponents.TableButton;
 import formcomponents.TableButtonListener;
+import musics.MusicList;
 import users.Client;
 
 public class ClientSession extends UserSession {
     
-    private List<Music> myMusic;
+    private MusicList myMusic;
     private String myMusicFilterField = "";
     private String myMusicFilterKeywords = "";
     private String myMusicSortField = "";
@@ -51,8 +51,8 @@ public class ClientSession extends UserSession {
     
     public void reloadMyMusic() {
         myMusic = this.getClient().getMusics();
-        myMusic = Music.filterMusicList(myMusic, myMusicFilterField, myMusicFilterKeywords);
-        myMusic = Music.sortMusicList(myMusic, myMusicSortField);
+        myMusic = myMusic.filter(myMusicFilterField, myMusicFilterKeywords);
+        myMusic = myMusic.sort(myMusicSortField);
         this.buildMyMusic();
     }
 
@@ -64,7 +64,7 @@ public class ClientSession extends UserSession {
     
     public void sortMyMusics(String field) {
         myMusicSortField = map.get(field);
-        myMusic = Music.sortMusicList(myMusic, myMusicSortField);
+        myMusic = myMusic.sort(myMusicSortField);
         this.buildMyMusic();
     }
     

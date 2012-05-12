@@ -1,16 +1,12 @@
 package musics;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 public class Catalog {
     
     private static Catalog instance;
-    private List<Music> list;
+    private MusicList musicList;
     
     private Catalog() {
-        list = new ArrayList<Music>();
+        musicList = new MusicList();
     }
     
     public static Catalog getInstance() {
@@ -25,23 +21,19 @@ public class Catalog {
     }
     
     public boolean publish(Music music) {
-        return list.add(music);
+        return this.getCatalog().add(music);
     }
-    
-    public int count() {
-        return list.size();
-    }    
     
     public boolean remove(Music music) {
-        return list.remove(music);
+        return this.getCatalog().remove(music);
     }
     
-    public boolean removeAll(Collection<Music> musics) {
-        return list.removeAll(musics);
+    public boolean removeAll(MusicList musics) {
+        return this.getCatalog().removeAll(musics);
     }
     
-    public List<Music> getCatalog() {
-        return list;
+    public MusicList getCatalog() {
+        return musicList;
     }
     
 }

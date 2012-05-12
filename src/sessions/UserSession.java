@@ -13,10 +13,12 @@ import formcomponents.CatalogTableModel;
 import dialogs.ChangePasswordDialog;
 import formcomponents.DialogWithCatalogInterface;
 import formcomponents.HeaderListener;
+import musics.MusicList;
 import users.Admin;
 import users.Client;
 import users.Producer;
 import users.User;
+import users.Users;
 
 public abstract class UserSession extends Session {
     
@@ -33,39 +35,38 @@ public abstract class UserSession extends Session {
     
     private User user;
     
-    protected List<Music> catalog;
+    protected MusicList catalog;
     private String catalogFilterField = "";
     private String catalogFilterKeywords = "";
     private String catalogSortField = "";
     
     public UserSession(User user) {
         this.user = user;
-        catalog = Music.sortMusicList(Catalog.getInstance().getCatalog(), "popularity");
+        catalog = Catalog.getInstance().getCatalog();
+        catalog = catalog.sort("popularity");
     }
     
-    public static Session create(User user) {
+    public static Session create() {
+        User user = Users.getInstance().getLoggedUser();
         return (user instanceof Admin)? new AdminSession((Admin) user) :
                (user instanceof Client)? new ClientSession((Client) user) :
                (user instanceof Producer)? new ProducerSession((Producer) user) :
                null;
     }
     
-    public User getUser() {
-        return user;
-    }
-
     public Session logout() {
         if (component != null) {
             component.dispose();
         }
+        Users.getInstance().logout();
         Session.eraseInstance();
         return Session.getInstance();
     }
     
     public void reloadCatalog() {
         catalog = Catalog.getInstance().getCatalog();
-        catalog = Music.filterMusicList(catalog, catalogFilterField, catalogFilterKeywords);
-        catalog = Music.sortMusicList(catalog, catalogSortField);
+        catalog = catalog.filter(catalogFilterField, catalogFilterKeywords);
+        catalog = catalog.sort(catalogSortField);
         this.buildCatalogTable();
     }
     
@@ -77,7 +78,7 @@ public abstract class UserSession extends Session {
     
     public void sortCatalog(String field) {
         catalogSortField = map.get(field);
-        catalog = Music.sortMusicList(catalog, catalogSortField);
+        catalog = catalog.sort(catalogSortField);
         this.buildCatalogTable();
     }
     
@@ -99,6 +100,10 @@ public abstract class UserSession extends Session {
                 ((UserSession) session).sortCatalog(column);
             }
         });
+    }
+    
+    public User getUser() {
+        return user;
     }
     
     public abstract void buildGreetings();
