@@ -96,7 +96,7 @@ public class UserTest {
     @Test
     public void testClientCanSignUp() throws Exception {
         assertNull(users.findByLogin("aninha"));
-        users.signUpClient("Ana", "ana@email.com", "aninha", "123456", "123456");
+        users.getUserFactory().signUpClient("Ana", "ana@email.com", "aninha", "123456", "123456");
         assertNotNull(users.findByLogin("aninha"));
         assertEquals(2, users.getUserList().size());
     }
@@ -104,7 +104,7 @@ public class UserTest {
     @Test
     public void testClientLoginShouldBeUnique() throws Exception {
         try {
-            users.signUpClient("Ana Admin", "ana@email.com", "admin", "123456", "123456");
+            users.getUserFactory().signUpClient("Ana Admin", "ana@email.com", "admin", "123456", "123456");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("Este login já existe", e.getMessage());
@@ -115,7 +115,7 @@ public class UserTest {
     @Test
     public void testCreateAdmin() throws Exception {
         assertNull(users.findByLogin("aninha"));
-        User user = users.signUpAdmin("Ana", "ana@email.com", "aninha", "123456", "123456");
+        User user = users.getUserFactory().signUpAdmin("Ana", "ana@email.com", "aninha", "123456", "123456");
         assertEquals(user, users.findByLogin("aninha"));
         assertEquals(2, users.getUserList().size());
         assertEquals(user.getName(), "Ana");
@@ -127,7 +127,7 @@ public class UserTest {
     @Test
     public void testCreateProducer() throws Exception {
         assertNull(users.findByLogin("aninha"));
-        User user = users.signUpProducer("Ana", "ana@email.com", "aninha", "123456", "123456");
+        User user = users.getUserFactory().signUpProducer("Ana", "ana@email.com", "aninha", "123456", "123456");
         assertEquals(user, users.findByLogin("aninha"));
         assertEquals(2, users.getUserList().size());
         assertEquals(user.getName(), "Ana");

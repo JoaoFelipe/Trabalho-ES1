@@ -27,19 +27,8 @@ public class Admin extends User {
     
     public void removeProducer(String login) throws Exception {
         User user = Users.getInstance().findByLogin(login);
-        if (!(user instanceof Producer)) {
-            throw new Exception("Apenas produtores podem ser removidos");
-        }
         ((Producer) user).removeAllPublications();
         Users.getInstance().remove(user);
-    }
-    
-    public void signUpAdmin(String name, String email, String login, String password, String repeatPassword) throws Exception {
-        Users.getInstance().signUpAdmin(name, email, login, password, repeatPassword);
-    }
-    
-    public void signUpProducer(String name, String email, String login, String password, String repeatPassword) throws Exception {
-        Users.getInstance().signUpProducer(name, email, login, password, repeatPassword);
     }
     
 }

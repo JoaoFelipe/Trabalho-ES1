@@ -21,19 +21,19 @@ public class Client extends User {
     }
     
     public void buy(Music music) throws Exception {
-        if (this.getMusics().contains(music)) {
+        if (this.getMyMusics().contains(music)) {
             throw new Exception("Você já possui esta música");
         }
         if (music.getPrice() > this.getCredits()) {
             throw new Exception("Você não possui créditos suficientes");
         }
-        this.getMusics().add(music);
+        this.getMyMusics().add(music);
         this.payCredits(music.getPrice());
         music.getProducer().addCredits(music.getPrice());
         music.increasePopularity();
     }
    
-    public MusicList getMusics() {
+    public MusicList getMyMusics() {
         return myMusics;
     }
 

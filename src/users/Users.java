@@ -1,8 +1,5 @@
 package users;
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Users {
@@ -13,8 +10,12 @@ public class Users {
     
     private User loggedUser = null;
     
+    private UserFactory userFactory = null;
+    
     private Users() {
         userList = new HashSet<User>();
+        userFactory = new UserFactory();
+        
         userList.add(new Admin());
 //        try {
 //            Producer producer = new Producer("Producer", "producer@email.com", "producer", "1", "1");
@@ -50,28 +51,10 @@ public class Users {
         return null;
     }
     
-    private void signUp(User user) throws Exception {
+    public void signUp(User user) throws Exception {
         if (!this.getUserList().add(user)) {
             throw new Exception("Este login já existe");
         }
-    }
-    
-    public Client signUpClient(String name, String email, String login, String password, String repeatPassword) throws Exception {
-        Client client = new Client(name, email, login, password, repeatPassword);
-        this.signUp(client);
-        return client;
-    }
-    
-    public Admin signUpAdmin(String name, String email, String login, String password, String repeatPassword) throws Exception {
-        Admin admin = new Admin(name, email, login, password, repeatPassword);
-        this.signUp(admin);
-        return admin;
-    }
-    
-    public Producer signUpProducer(String name, String email, String login, String password, String repeatPassword) throws Exception {
-        Producer producer = new Producer(name, email, login, password, repeatPassword);
-        this.signUp(producer);
-        return producer;
     }
     
     public User login(String login, String password) throws Exception {
@@ -90,16 +73,6 @@ public class Users {
     public boolean remove(User user) throws Exception {
         return this.getUserList().remove(user);
     }
-    
-    public List<Producer> getProducers() {
-        List<Producer> result = new ArrayList<Producer>();
-        for (User user : this.getUserList()) {
-            if (user instanceof Producer) {
-                result.add((Producer) user);
-            }
-        }
-        return result;
-    }
 
     public User getLoggedUser() {
         return loggedUser;
@@ -111,6 +84,10 @@ public class Users {
 
     public Set<User> getUserList() {
         return userList;
+    }
+    
+    public UserFactory getUserFactory() {
+        return userFactory;
     }
     
 }

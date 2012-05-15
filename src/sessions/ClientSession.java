@@ -50,7 +50,7 @@ public class ClientSession extends UserSession {
     }
     
     public void reloadMyMusic() {
-        myMusic = this.getClient().getMusics();
+        myMusic = this.getClient().getMyMusics();
         myMusic = myMusic.filter(myMusicFilterField, myMusicFilterKeywords);
         myMusic = myMusic.sort(myMusicSortField);
         this.buildMyMusic();

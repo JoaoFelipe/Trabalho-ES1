@@ -55,12 +55,8 @@ public class Music {
                 "";
     }
     
-    public String mapFieldForFilter(String field) {
-        return mapField(field)+"";
-    }
-    
     public boolean match(String field, String keywords) {
-        return mapFieldForFilter(field).toUpperCase().contains(keywords.toUpperCase());
+        return (mapField(field)+"").toUpperCase().contains(keywords.toUpperCase());
     }
     
     public void increasePopularity() {

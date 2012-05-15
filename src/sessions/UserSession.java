@@ -42,7 +42,7 @@ public abstract class UserSession extends Session {
     
     public UserSession(User user) {
         this.user = user;
-        catalog = Catalog.getInstance().getCatalog();
+        catalog = Catalog.getInstance().getMusicList();
         catalog = catalog.sort("popularity");
     }
     
@@ -64,7 +64,7 @@ public abstract class UserSession extends Session {
     }
     
     public void reloadCatalog() {
-        catalog = Catalog.getInstance().getCatalog();
+        catalog = Catalog.getInstance().getMusicList();
         catalog = catalog.filter(catalogFilterField, catalogFilterKeywords);
         catalog = catalog.sort(catalogSortField);
         this.buildCatalogTable();

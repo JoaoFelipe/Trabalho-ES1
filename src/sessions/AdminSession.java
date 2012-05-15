@@ -3,6 +3,7 @@ package sessions;
 import actions.GenerateCreditsAction;
 import actions.SignUpAdminAction;
 import actions.SignUpProducerAction;
+import credits.Credit;
 import credits.Credits;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -16,7 +17,13 @@ import dialogs.GenerateCreditsDialog;
 import dialogs.SignUpDialog;
 import formcomponents.TableButton;
 import formcomponents.TableButtonListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import users.Admin;
+import users.Producer;
+import users.User;
 import users.Users;
 
 public class AdminSession extends UserSession {
@@ -41,16 +48,45 @@ public class AdminSession extends UserSession {
         }
     }
     
+        
+    public List<Credit> getCredits() {
+        Credits credits = Credits.getInstance();
+        List<Credit> result = new ArrayList<Credit>();
+        for (Credit credit : credits.getList()) {
+            if (!credit.isActivated()) {
+                result.add(credit);
+            }
+        }
+        Collections.sort(result, new Comparator<Credit>(){
+
+            public int compare(Credit o1, Credit o2) {
+                return Integer.valueOf(o1.getValue()).compareTo(Integer.valueOf(o2.getValue()));
+            }
+            
+        });
+        return result;
+    }
+    
     public void buildCreditsTable() {
         Credits credits = Credits.getInstance();
         JTable creditsTable = ((AdminFrame) component).getCreditsTable();
-        creditsTable.setModel(new CreditsTableModel(credits.getCredits()));
+        creditsTable.setModel(new CreditsTableModel(this.getCredits()));
+    }
+    
+    private List<Producer> getProducers() {
+        List<Producer> result = new ArrayList<Producer>();
+        for (User user : Users.getInstance().getUserList()) {
+            if (user instanceof Producer) {
+                result.add((Producer) user);
+            }
+        }
+        return result;
     }
     
     public void buildProducersTable() {
         Users users = Users.getInstance();
         final JTable producersTable = ((AdminFrame) component).getProducersTable();     
-        final DefaultTableModel model = new ProducersTableModel(users.getProducers());
+        final DefaultTableModel model = new ProducersTableModel(this.getProducers());
         producersTable.setModel(model);
         TableColumn column = producersTable.getColumnModel().getColumn(3);
         TableButton button = new TableButton("Remover");

@@ -14,7 +14,7 @@ public class MusicList extends ArrayList<Music> {
     public MusicList() {
         super();
     }
-    
+
     public MusicList filter(String field, String keywords) {
         MusicList result = new MusicList();
         for (Music music : this) {
@@ -24,20 +24,15 @@ public class MusicList extends ArrayList<Music> {
         }
         return result;
     }
-    
+
     public MusicList sort(final String field) {
         MusicList result = new MusicList(this);
-        Collections.sort(result, comparatorForField(field));
-        return result;
-    }
-    
-    public Comparator<Music> comparatorForField(final String field) {
-        return new Comparator<Music>(){
+        Collections.sort(result, new Comparator<Music>() {
 
             public int compare(Music o1, Music o2) {
                 return o1.mapField(field).compareTo(o2.mapField(field));
             }
-        };
+        });
+        return result;
     }
-    
 }

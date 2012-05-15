@@ -19,7 +19,7 @@ public class SignUpClientAction implements SignUpAction{
 
     public void execute(String name, String email, String login, String password, String repeatPassword) {
         try {
-            Users.getInstance().signUpClient(name, email, login, password, repeatPassword);
+            Users.getInstance().getUserFactory().signUpClient(name, email, login, password, repeatPassword);
             JOptionPane.showMessageDialog(signUpDialog, "O cadastro foi realizado com sucesso!", "Tchu Tcha Tcha Store", JOptionPane.INFORMATION_MESSAGE);
             session.login(login, password);
             session.getComponent().dispose();

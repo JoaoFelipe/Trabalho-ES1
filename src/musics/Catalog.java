@@ -21,18 +21,18 @@ public class Catalog {
     }
     
     public boolean publish(Music music) {
-        return this.getCatalog().add(music);
+        return this.getMusicList().add(music);
     }
     
     public boolean remove(Music music) {
-        return this.getCatalog().remove(music);
+        return this.getMusicList().remove(music);
     }
     
     public boolean removeAll(MusicList musics) {
-        return this.getCatalog().removeAll(musics);
+        return this.getMusicList().removeAll(musics);
     }
     
-    public MusicList getCatalog() {
+    public MusicList getMusicList() {
         return musicList;
     }
     
