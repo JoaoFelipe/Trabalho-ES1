@@ -15,7 +15,7 @@ public class GenerateCreditsAction {
 
     public void execute(String count, String value) {
         try {
-            session.getAdmin().generateCredits(count, value);
+            session.getAdmin().generateCodes(count, value);
             session.buildCreditsTable();
             generateCreditsDialog.dispose();
         } catch (Exception e) {

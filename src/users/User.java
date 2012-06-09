@@ -1,5 +1,7 @@
 package users;
 
+import store.Store;
+
 public abstract class User {
     
     private String name;
@@ -25,6 +27,10 @@ public abstract class User {
         if (!password.equals(repeatPassword)) {
             throw new Exception("As senhas digitadas não coincidem");
         }
+        if (Store.getInstance().findByLogin(login) != null) {
+            throw new Exception("Este login já existe");
+        }
+        
     }
     
     public boolean validatePassword(String password) {
@@ -60,6 +66,10 @@ public abstract class User {
             throw new Exception("A senha nova não coincide com a repetição da senha");
         }
         this.setPassword(newPassword);
+    }
+    
+    public void logout() {
+        Store.getInstance().setLoggedUser(null);
     }
     
     public String getName() {

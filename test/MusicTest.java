@@ -1,11 +1,9 @@
 import sessions.Session;
-import musics.Catalog;
+import store.Store;
 import musics.Music;
-import credits.Credits;
 import users.Producer;
 import java.util.List;
 import java.util.Arrays;
-import users.Users;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,23 +11,23 @@ import static org.junit.Assert.*;
 
 public class MusicTest {
     
-    Catalog catalog;
+    Store catalog;
     
     Producer producer;
     Producer producer2;
     
     @Before
     public void setUp() throws Exception {
-        catalog = Catalog.getInstance();
+        catalog = Store.getInstance();
         producer = new Producer("Ana", "ana@email.com", "aninha", "123456", "123456");
         producer2 = new Producer("Bia", "bia@email.com", "bia", "123456", "123456");
     }
     
     @After
     public void tearDown() {
-        Users.eraseInstance();
-        Credits.eraseInstance();
-        Catalog.eraseInstance();
+        Store.eraseInstance();
+        Store.eraseInstance();
+        Store.eraseInstance();
         Session.eraseInstance();
     }
         
@@ -81,9 +79,9 @@ public class MusicTest {
     @Test
     public void testPublishMusicInCatalog() throws Exception {
         Music music = new Music(producer, "Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
-        assertEquals(0, catalog.getMusicList().size());
-        assertTrue(catalog.publish(music));
-        assertEquals(1, catalog.getMusicList().size());
+        assertEquals(0, catalog.getMusics().size());
+        assertTrue(catalog.publishMusic(music));
+        assertEquals(1, catalog.getMusics().size());
     }
     
     @Test
@@ -112,39 +110,39 @@ public class MusicTest {
     @Test
     public void testRemoveMusicFromCatalog() throws Exception {
         Music music = new Music(producer, "Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
-        assertEquals(0, catalog.getMusicList().size());
-        assertTrue(catalog.publish(music));
-        assertEquals(1, catalog.getMusicList().size());
-        assertTrue(catalog.remove(music));
-        assertEquals(0, catalog.getMusicList().size());
+        assertEquals(0, catalog.getMusics().size());
+        assertTrue(catalog.publishMusic(music));
+        assertEquals(1, catalog.getMusics().size());
+        assertTrue(catalog.removeMusic(music));
+        assertEquals(0, catalog.getMusics().size());
     }
     
     @Test
     public void testCantRemoveMusicTwice() throws Exception {
         Music music = new Music(producer, "Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
-        assertEquals(0, catalog.getMusicList().size());
-        assertTrue(catalog.publish(music));
-        assertEquals(1, catalog.getMusicList().size());
-        assertTrue(catalog.remove(music));
-        assertFalse(catalog.remove(music));
-        assertEquals(0, catalog.getMusicList().size());
+        assertEquals(0, catalog.getMusics().size());
+        assertTrue(catalog.publishMusic(music));
+        assertEquals(1, catalog.getMusics().size());
+        assertTrue(catalog.removeMusic(music));
+        assertFalse(catalog.removeMusic(music));
+        assertEquals(0, catalog.getMusics().size());
         
     }
     
     @Test
     public void testProducersCanPublishMusics() throws Exception {
-        assertEquals(0, catalog.getMusicList().size());
+        assertEquals(0, catalog.getMusics().size());
         assertEquals(0, producer.getPublications().size());
         Music music = producer.publish("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
         assertEquals(producer, music.getProducer());
         assertEquals(1, producer.getPublications().size());
-        assertEquals(1, catalog.getMusicList().size());
+        assertEquals(1, catalog.getMusics().size());
     }
     
     @Test
     public void testProducersCanChangeInformationsFromMusicsThatHePublished() throws Exception {
         Music music = producer.publish("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
-        assertEquals(1, catalog.getMusicList().size());
+        assertEquals(1, catalog.getMusics().size());
         assertEquals("Sk8er Boi", music.getName());
         producer.changeMusic(music, "Skater Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
         assertEquals("Skater Boi", music.getName());
@@ -153,9 +151,9 @@ public class MusicTest {
     @Test
     public void testProducersCanRemoveMusicsThatHePublished() throws Exception {
         Music music = producer.publish("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
-        assertEquals(1, catalog.getMusicList().size());
+        assertEquals(1, catalog.getMusics().size());
         producer.removeMusic(music);
-        assertEquals(0, catalog.getMusicList().size());
+        assertEquals(0, catalog.getMusics().size());
     }
     
 }

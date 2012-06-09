@@ -1,21 +1,21 @@
 package formcomponents;
 
-import credits.Credit;
+import codes.Code;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class CreditsTableModel extends DefaultTableModel {
 
-    public CreditsTableModel(List<Credit> credits) {
+    public CreditsTableModel(List<Code> credits) {
         super(
             new Object[][] {}, 
             new String [] {
                 "Código", "Valor"
             }
         );
-        for (Credit credit : credits) {
-            this.addRow(Arrays.asList(credit.getCode(), credit.getValue()).toArray());
+        for (Code credit : credits) {
+            this.addRow(Arrays.asList(credit.getKey(), credit.getValue()).toArray());
         }
     }
     

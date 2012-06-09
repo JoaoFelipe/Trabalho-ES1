@@ -1,11 +1,9 @@
 import sessions.Session;
-import credits.Credits;
 import users.Admin;
 import java.util.List;
 import java.util.Arrays;
-import musics.Catalog;
+import store.Store;
 import users.User;
-import users.Users;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,32 +12,30 @@ import static org.junit.Assert.*;
 
 public class UserTest {
     
-    Catalog catalog;
-    Credits credits;
-    Users users;
+    Store catalog;
+    Store credits;
+    Store users;
     
     Admin admin;
     
     @Before
     public void setUp() {
-        catalog = Catalog.getInstance();
-        credits = Credits.getInstance();
-        users = Users.getInstance();
+        catalog = Store.getInstance();
+        credits = Store.getInstance();
+        users = Store.getInstance();
         
         admin = (Admin) users.findByLogin("admin");
     }
     
     @After
     public void tearDown() {
-        Users.eraseInstance();
-        Credits.eraseInstance();
-        Catalog.eraseInstance();
+        Store.eraseInstance();
         Session.eraseInstance();
     }
     
     @Test
     public void testUsersDefaultInstanceShouldCreateAnAdmin() throws Exception {
-        assertEquals(1, users.getUserList().size());
+        assertEquals(1, users.getUsers().size());
         User user = users.findByLogin("admin");
         assertNotNull(user);
         assertEquals(user.getName(), "Administrador");
@@ -96,28 +92,28 @@ public class UserTest {
     @Test
     public void testClientCanSignUp() throws Exception {
         assertNull(users.findByLogin("aninha"));
-        users.getUserFactory().signUpClient("Ana", "ana@email.com", "aninha", "123456", "123456");
+        users.signUpClient("Ana", "ana@email.com", "aninha", "123456", "123456");
         assertNotNull(users.findByLogin("aninha"));
-        assertEquals(2, users.getUserList().size());
+        assertEquals(2, users.getUsers().size());
     }
     
     @Test
     public void testClientLoginShouldBeUnique() throws Exception {
         try {
-            users.getUserFactory().signUpClient("Ana Admin", "ana@email.com", "admin", "123456", "123456");
+            users.signUpClient("Ana Admin", "ana@email.com", "admin", "123456", "123456");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("Este login já existe", e.getMessage());
         }
-        assertEquals(1, users.getUserList().size());
+        assertEquals(1, users.getUsers().size());
     }
     
     @Test
     public void testCreateAdmin() throws Exception {
         assertNull(users.findByLogin("aninha"));
-        User user = users.getUserFactory().signUpAdmin("Ana", "ana@email.com", "aninha", "123456", "123456");
+        User user = users.signUpAdmin("Ana", "ana@email.com", "aninha", "123456", "123456");
         assertEquals(user, users.findByLogin("aninha"));
-        assertEquals(2, users.getUserList().size());
+        assertEquals(2, users.getUsers().size());
         assertEquals(user.getName(), "Ana");
         assertEquals(user.getEmail(), "ana@email.com");
         assertEquals(user.getLogin(), "aninha");
@@ -127,9 +123,9 @@ public class UserTest {
     @Test
     public void testCreateProducer() throws Exception {
         assertNull(users.findByLogin("aninha"));
-        User user = users.getUserFactory().signUpProducer("Ana", "ana@email.com", "aninha", "123456", "123456");
+        User user = users.signUpProducer("Ana", "ana@email.com", "aninha", "123456", "123456");
         assertEquals(user, users.findByLogin("aninha"));
-        assertEquals(2, users.getUserList().size());
+        assertEquals(2, users.getUsers().size());
         assertEquals(user.getName(), "Ana");
         assertEquals(user.getEmail(), "ana@email.com");
         assertEquals(user.getLogin(), "aninha");
@@ -197,7 +193,7 @@ public class UserTest {
     public void testLogout() throws Exception {
         users.login("admin", "admin");
         assertEquals(admin, users.getLoggedUser());
-        users.logout();
+        admin.logout();
         assertNull(users.getLoggedUser());
     }
 

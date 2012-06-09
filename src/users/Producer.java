@@ -1,6 +1,6 @@
 package users;
 
-import musics.Catalog;
+import store.Store;
 import musics.Music;
 import musics.MusicList;
 
@@ -16,7 +16,7 @@ public class Producer extends User {
 
     public Music publish(String name, String genre, String album, String artist, String price) throws Exception {
         Music music = new Music(this, name, genre, album, artist, price);
-        Catalog.getInstance().publish(music);
+        Store.getInstance().publishMusic(music);
         this.getPublications().add(music);
         return music;
     }
@@ -26,13 +26,13 @@ public class Producer extends User {
     }
     
     public void removeAllPublications() throws Exception {
-        Catalog.getInstance().removeAll(this.getPublications());
+        Store.getInstance().removeAllMusics(this.getPublications());
         this.getPublications().clear();
     }
     
     public void removeMusic(Music music) throws Exception {
         this.getPublications().remove(music);
-        Catalog.getInstance().remove(music);
+        Store.getInstance().removeMusic(music);
     }
     
     public void addCredits(int value) {

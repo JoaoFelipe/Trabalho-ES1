@@ -4,8 +4,8 @@ import actions.SignUpClientAction;
 import javax.swing.JOptionPane;
 import dialogs.LoginFrame;
 import dialogs.SignUpDialog;
+import store.Store;
 import users.User;
-import users.Users;
 
 public class LoginSession extends Session {
 
@@ -16,7 +16,7 @@ public class LoginSession extends Session {
     
     public Session login(String login, String password) {
         try {
-            User user = Users.getInstance().login(login, password);
+            User user = Store.getInstance().login(login, password);
             LoginSession.startUserSession().showDialog();
             component.dispose();
         } catch (Exception e) {

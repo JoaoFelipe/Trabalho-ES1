@@ -1,9 +1,7 @@
 import sessions.Session;
-import credits.Credit;
-import credits.Credits;
+import codes.Code;
 import users.Admin;
-import musics.Catalog;
-import users.Users;
+import store.Store;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,79 +10,77 @@ import static org.junit.Assert.*;
 
 public class CreditTest {
     
-    Credits credits;
+    Store credits;
     
     Client client;
     Admin admin;
     
     @Before
     public void setUp() throws Exception {
-        credits = Credits.getInstance();
+        credits = Store.getInstance();
         client = new Client("Ana", "ana@email.com", "aninha", "123456", "123456");
-        admin = ((Admin) Users.getInstance().findByLogin("admin"));
+        admin = ((Admin) Store.getInstance().findByLogin("admin"));
     }
     
     @After
     public void tearDown() {
-        Users.eraseInstance();
-        Credits.eraseInstance();
-        Catalog.eraseInstance();
+        Store.eraseInstance();
         Session.eraseInstance();
     }
     
     @Test
     public void testCreateCredit() throws Exception {
-        Credit credit = new Credit(25);
+        Code credit = new Code(25);
         assertEquals(25, credit.getValue());
     }
     
     @Test
     public void testCreateCreditByCode() throws Exception {
-        Credit credit = new Credit("25-tg2q-x60n-bylj");
+        Code credit = new Code("25-tg2q-x60n-bylj");
         assertEquals(25, credit.getValue());
     }
 
     @Test
     public void testIdentifyCrediyByCode() throws Exception {
-        Credit credit = new Credit(10);
-        Credit copy = new Credit(credit.getCode());
+        Code credit = new Code(10);
+        Code copy = new Code(credit.getKey());
         assertEquals(credit, copy);
     }
     
     @Test
     public void testRegisterCredit() throws Exception {
-        Credit credit = new Credit(10);
-        assertEquals(0, credits.getList().size());
-        assertFalse(credits.hasCredit(credit.getCode()));
-        assertTrue(credits.register(credit));
-        assertTrue(credits.hasCredit(credit.getCode()));
-        assertEquals(1, credits.getList().size());
+        Code credit = new Code(10);
+        assertEquals(0, credits.getCodes().size());
+        assertFalse(credits.hasCode(credit.getKey()));
+        assertTrue(credits.registerCode(credit));
+        assertTrue(credits.hasCode(credit.getKey()));
+        assertEquals(1, credits.getCodes().size());
     }
     
     @Test
     public void testNotAllowToRegisterTheSameCreditTwice() throws Exception {
-        Credit credit = new Credit(10);
-        assertEquals(0, credits.getList().size());
-        assertFalse(credits.hasCredit(credit.getCode()));
-        assertTrue(credits.register(credit));
-        assertTrue(credits.hasCredit(credit.getCode()));
-        assertFalse(credits.register(credit));
-        assertFalse(credits.register(new Credit(credit.getCode())));
-        assertTrue(credits.hasCredit(credit.getCode()));
-        assertEquals(1, credits.getList().size());
+        Code credit = new Code(10);
+        assertEquals(0, credits.getCodes().size());
+        assertFalse(credits.hasCode(credit.getKey()));
+        assertTrue(credits.registerCode(credit));
+        assertTrue(credits.hasCode(credit.getKey()));
+        assertFalse(credits.registerCode(credit));
+        assertFalse(credits.registerCode(new Code(credit.getKey())));
+        assertTrue(credits.hasCode(credit.getKey()));
+        assertEquals(1, credits.getCodes().size());
     }
 
     @Test
     public void testGenerateNCredits() throws Exception {
-        credits.generate(5, 25);
-        assertEquals(5, credits.getList().size());
+        credits.generateCodes(5, 25);
+        assertEquals(5, credits.getCodes().size());
     }
     
     @Test
     public void testActivateCredit() throws Exception {
-        Credit credit = new Credit(25);
-        credits.register(credit);
-        credit = credits.find(credit.getCode());
+        Code credit = new Code(25);
+        credits.registerCode(credit);
+        credit = credits.findCode(credit.getKey());
         assertFalse(credit.isActivated());
         credit.activate();
         assertTrue(credit.isActivated());
@@ -92,32 +88,32 @@ public class CreditTest {
     
     @Test
     public void testActivatedCreditCantBeFoundButStillExistsToAvoidCodeRepetition() throws Exception {
-        Credit credit = new Credit(25);
-        credits.register(credit);
-        assertTrue(credits.hasCredit(credit.getCode()));
-        assertNotNull(credits.find(credit.getCode()));
+        Code credit = new Code(25);
+        credits.registerCode(credit);
+        assertTrue(credits.hasCode(credit.getKey()));
+        assertNotNull(credits.findCode(credit.getKey()));
         credit.activate();
-        assertNull(credits.find(credit.getCode()));
-        assertTrue(credits.hasCredit(credit.getCode()));
+        assertNull(credits.findCode(credit.getKey()));
+        assertTrue(credits.hasCode(credit.getKey()));
     }
     
     @Test
     public void testActivateCreditByCode() throws Exception {
-        Credit credit = new Credit(25);
-        credits.register(credit);
+        Code credit = new Code(25);
+        credits.registerCode(credit);
         assertFalse(credit.isActivated());
-        credits.activate(credit.getCode());
+        credits.activateCode(credit.getKey());
         assertTrue(credit.isActivated());
     }
     
     @Test
     public void testActivateUnknownCodeInstPossible() throws Exception {
-        Credit credit = new Credit(25);
-        credits.register(credit);
+        Code credit = new Code(25);
+        credits.registerCode(credit);
         credit.activate();
         assertTrue(credit.isActivated());
         try {
-            credits.activate(credit.getCode());
+            credits.activateCode(credit.getKey());
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("O código digitado não existe", e.getMessage());
@@ -127,56 +123,56 @@ public class CreditTest {
     
     @Test
     public void testClientCanAcquireCredits() throws Exception {
-        Credit credit = new Credit(25);
-        credits.register(credit);
+        Code credit = new Code(25);
+        credits.registerCode(credit);
         assertFalse(credit.isActivated());
         assertEquals(0, client.getCredits());
-        client.acquireCredits(credit.getCode());
+        client.acquireCredits(credit.getKey());
         assertEquals(25, client.getCredits());
         assertTrue(credit.isActivated());
     }
     
     @Test
     public void testAdminCanGenerateCredits() throws Exception {
-        assertEquals(0, credits.getList().size());
-        admin.generateCredits("5", "25");
-        assertEquals(5, credits.getList().size());
+        assertEquals(0, credits.getCodes().size());
+        admin.generateCodes("5", "25");
+        assertEquals(5, credits.getCodes().size());
     }
     
     @Test
     public void testAdminCannotGenerateCreditsWhenCountOrValueIsInvalid() throws Exception {
-        assertEquals(0, credits.getList().size());
+        assertEquals(0, credits.getCodes().size());
         try {
-            admin.generateCredits("a", "25");
+            admin.generateCodes("a", "25");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("As informações digitadas estão inconsistentes", e.getMessage());
         }
         try {
-            admin.generateCredits("5", "2b");
+            admin.generateCodes("5", "2b");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("As informações digitadas estão inconsistentes", e.getMessage());
         }
-        assertEquals(0, credits.getList().size());
+        assertEquals(0, credits.getCodes().size());
     }
     
     @Test
     public void testNegativeValueOrCountAreInvalid() throws Exception {
-        assertEquals(0, credits.getList().size());
+        assertEquals(0, credits.getCodes().size());
         try {
-            admin.generateCredits("-5", "25");
+            admin.generateCodes("-5", "25");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("As informações digitadas estão inconsistentes", e.getMessage());
         }
         try {
-            admin.generateCredits("5", "-25");
+            admin.generateCodes("5", "-25");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("As informações digitadas estão inconsistentes", e.getMessage());
         }
-        assertEquals(0, credits.getList().size());
+        assertEquals(0, credits.getCodes().size());
     }
     
 }

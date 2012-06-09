@@ -3,12 +3,10 @@ package sessions;
 import actions.ChangePasswordAction;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
-import musics.Catalog;
-import musics.Music;
+import store.Store;
 import formcomponents.CatalogTableModel;
 import dialogs.ChangePasswordDialog;
 import formcomponents.DialogWithCatalogInterface;
@@ -18,7 +16,6 @@ import users.Admin;
 import users.Client;
 import users.Producer;
 import users.User;
-import users.Users;
 
 public abstract class UserSession extends Session {
     
@@ -42,12 +39,12 @@ public abstract class UserSession extends Session {
     
     public UserSession(User user) {
         this.user = user;
-        catalog = Catalog.getInstance().getMusicList();
+        catalog = Store.getInstance().getMusics();
         catalog = catalog.sort("popularity");
     }
     
     public static Session create() {
-        User user = Users.getInstance().getLoggedUser();
+        User user = Store.getInstance().getLoggedUser();
         return (user instanceof Admin)? new AdminSession((Admin) user) :
                (user instanceof Client)? new ClientSession((Client) user) :
                (user instanceof Producer)? new ProducerSession((Producer) user) :
@@ -58,13 +55,13 @@ public abstract class UserSession extends Session {
         if (component != null) {
             component.dispose();
         }
-        Users.getInstance().logout();
+        this.getUser().logout();
         Session.eraseInstance();
         return Session.getInstance();
     }
     
     public void reloadCatalog() {
-        catalog = Catalog.getInstance().getMusicList();
+        catalog = Store.getInstance().getMusics();
         catalog = catalog.filter(catalogFilterField, catalogFilterKeywords);
         catalog = catalog.sort(catalogSortField);
         this.buildCatalogTable();

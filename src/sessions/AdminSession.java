@@ -3,8 +3,7 @@ package sessions;
 import actions.GenerateCreditsAction;
 import actions.SignUpAdminAction;
 import actions.SignUpProducerAction;
-import credits.Credit;
-import credits.Credits;
+import codes.Code;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -21,10 +20,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import store.Store;
 import users.Admin;
 import users.Producer;
 import users.User;
-import users.Users;
 
 public class AdminSession extends UserSession {
     
@@ -49,17 +48,17 @@ public class AdminSession extends UserSession {
     }
     
         
-    public List<Credit> getCredits() {
-        Credits credits = Credits.getInstance();
-        List<Credit> result = new ArrayList<Credit>();
-        for (Credit credit : credits.getList()) {
+    public List<Code> getCredits() {
+        Store credits = Store.getInstance();
+        List<Code> result = new ArrayList<Code>();
+        for (Code credit : credits.getCodes()) {
             if (!credit.isActivated()) {
                 result.add(credit);
             }
         }
-        Collections.sort(result, new Comparator<Credit>(){
+        Collections.sort(result, new Comparator<Code>(){
 
-            public int compare(Credit o1, Credit o2) {
+            public int compare(Code o1, Code o2) {
                 return Integer.valueOf(o1.getValue()).compareTo(Integer.valueOf(o2.getValue()));
             }
             
@@ -68,14 +67,14 @@ public class AdminSession extends UserSession {
     }
     
     public void buildCreditsTable() {
-        Credits credits = Credits.getInstance();
+        Store credits = Store.getInstance();
         JTable creditsTable = ((AdminFrame) component).getCreditsTable();
         creditsTable.setModel(new CreditsTableModel(this.getCredits()));
     }
     
     private List<Producer> getProducers() {
         List<Producer> result = new ArrayList<Producer>();
-        for (User user : Users.getInstance().getUserList()) {
+        for (User user : Store.getInstance().getUsers()) {
             if (user instanceof Producer) {
                 result.add((Producer) user);
             }
@@ -84,7 +83,7 @@ public class AdminSession extends UserSession {
     }
     
     public void buildProducersTable() {
-        Users users = Users.getInstance();
+        Store store = Store.getInstance();
         final JTable producersTable = ((AdminFrame) component).getProducersTable();     
         final DefaultTableModel model = new ProducersTableModel(this.getProducers());
         producersTable.setModel(model);

@@ -3,7 +3,7 @@ package actions;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import sessions.AdminSession;
-import users.Users;
+import store.Store;
 
 public class SignUpProducerAction implements SignUpAction{
     
@@ -16,7 +16,7 @@ public class SignUpProducerAction implements SignUpAction{
 
     public void execute(String name, String email, String login, String password, String repeatPassword) {
         try {
-            Users.getInstance().getUserFactory().signUpProducer(name, email, login, password, repeatPassword);
+            Store.getInstance().signUpProducer(name, email, login, password, repeatPassword);
             JOptionPane.showMessageDialog(signUpDialog, "O cadastro foi realizado com sucesso!", "Tchu Tcha Tcha Store", JOptionPane.INFORMATION_MESSAGE);
             session.buildProducersTable();
             this.signUpDialog.dispose();
