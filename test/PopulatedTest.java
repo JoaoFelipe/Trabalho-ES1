@@ -1,15 +1,15 @@
-import musics.MusicList;
-import sessions.Session;
-import users.Admin;
-import store.Store;
-import musics.Music;
-import codes.Code;
-import users.Producer;
+import business.musics.MusicList;
+import ui.sessions.Session;
+import business.users.Admin;
+import business.store.Store;
+import business.musics.Music;
+import business.codes.Code;
+import business.users.Producer;
 import java.util.Arrays;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import users.Client;
+import business.users.Client;
 import static org.junit.Assert.*;
 
 public class PopulatedTest {
@@ -35,17 +35,25 @@ public class PopulatedTest {
         producer = (Producer)users.signUpProducer("Ana", "ana@email.com", "aninha", "123456", "123456");
         producer2 = (Producer) users.signUpProducer("Bia", "bia@email.com", "bia", "123456", "123456");
         client = (Client) users.signUpClient("Carol", "carol@email.com", "carol", "123456", "123456");
-        m1 = producer.publish("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "2");
-        m2 = producer.publish("Innocence", "Punk Rock", "The Best Damn Thing", "Avril Lavigne", "10");
-        m3 = producer2.publish("She Wolf", "Nu-Disco, electropop", "She Wolf", "Shakira", "21");
-        m4 = producer2.publish("Loba", "Nu-Disco, electropop latin", "She Wolf", "Shakira", "5");
-        m5 = producer2.publish("Estoy Aqui", "Latin", "Piez Descalzos", "Shakira", "1");
+        catalog.login("aninha", "123456");
+        catalog.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "2");
+        m1 = catalog.getCatalog().get(catalog.getCatalog().size() - 1);
+        catalog.publishMusic("Innocence", "Punk Rock", "The Best Damn Thing", "Avril Lavigne", "10");
+        m2 = catalog.getCatalog().get(catalog.getCatalog().size() - 1);
+        catalog.login("bia", "123456");
+        catalog.publishMusic("She Wolf", "Nu-Disco, electropop", "She Wolf", "Shakira", "21");
+        m3 = catalog.getCatalog().get(catalog.getCatalog().size() - 1);
+        catalog.publishMusic("Loba", "Nu-Disco, electropop latin", "She Wolf", "Shakira", "5");
+        m4 = catalog.getCatalog().get(catalog.getCatalog().size() - 1);
+        catalog.publishMusic("Estoy Aqui", "Latin", "Piez Descalzos", "Shakira", "1");
+        m5 = catalog.getCatalog().get(catalog.getCatalog().size() - 1);
         m4.increasePopularity();
         m4.increasePopularity();
         m2.increasePopularity();
         Code code = new Code(25);
         Store.getInstance().registerCode(code);
-        client.acquireCredits(code.getKey());
+        catalog.login("carol", "123456");
+        catalog.acquireCredits(code.getKey());
     }
     
     @After
@@ -75,21 +83,21 @@ public class PopulatedTest {
     
     @Test
     public void testFilterMusicListAndCatalogForSearch() throws Exception {
-        assertEquals(5, catalog.getMusics().size());
-        assertArrayEquals(Arrays.asList(m1,m2,m3,m4,m5).toArray(), catalog.getMusics().filter("name", "o").toArray());
-        assertArrayEquals(Arrays.asList(m4,m5).toArray(), catalog.getMusics().filter("name", "a").toArray());
-        assertArrayEquals(Arrays.asList(m1,m2).toArray(), catalog.getMusics().filter("artist", "Avril").toArray());
-        assertArrayEquals(Arrays.asList(m3,m4,m5).toArray(), catalog.getMusics().filter("artist", "Shakira").toArray());
-        assertArrayEquals(Arrays.asList(m1,m3,m4).toArray(), catalog.getMusics().filter("genre", "pop").toArray());
+        assertEquals(5, catalog.getCatalog().size());
+        assertArrayEquals(Arrays.asList(m1,m2,m3,m4,m5).toArray(), catalog.getCatalog().filter("name", "o").toArray());
+        assertArrayEquals(Arrays.asList(m4,m5).toArray(), catalog.getCatalog().filter("name", "a").toArray());
+        assertArrayEquals(Arrays.asList(m1,m2).toArray(), catalog.getCatalog().filter("artist", "Avril").toArray());
+        assertArrayEquals(Arrays.asList(m3,m4,m5).toArray(), catalog.getCatalog().filter("artist", "Shakira").toArray());
+        assertArrayEquals(Arrays.asList(m1,m3,m4).toArray(), catalog.getCatalog().filter("genre", "pop").toArray());
         assertArrayEquals(Arrays.asList(m1,m3).toArray(), new MusicList(Arrays.asList(m1,m2,m3)).filter("genre", "pop").toArray());
         
     }
     
     @Test
     public void testSortMusicListAndCatalogByField() throws Exception {
-        assertEquals(5, catalog.getMusics().size());
-        assertArrayEquals(Arrays.asList(m5,m2,m4,m3,m1).toArray(), catalog.getMusics().sort("name").toArray()); //String: crescente
-        assertArrayEquals(Arrays.asList(m3,m2,m4,m1,m5).toArray(), catalog.getMusics().sort("price").toArray()); //Int: decrescente
+        assertEquals(5, catalog.getCatalog().size());
+        assertArrayEquals(Arrays.asList(m5,m2,m4,m3,m1).toArray(), catalog.getCatalog().sort("name").toArray()); //String: crescente
+        assertArrayEquals(Arrays.asList(m3,m2,m4,m1,m5).toArray(), catalog.getCatalog().sort("price").toArray()); //Int: decrescente
         assertArrayEquals(Arrays.asList(m3,m2,m1).toArray(), new MusicList(Arrays.asList(m1,m2,m3)).sort("price").toArray()); //Int: decrescente
         assertArrayEquals(Arrays.asList(m4,m2,m1,m3).toArray(), new MusicList(Arrays.asList(m1,m2,m3,m4)).sort("popularity").toArray()); //Int: decrescente
     }
@@ -141,9 +149,11 @@ public class PopulatedTest {
     
     @Test
     public void testClientCannotBuyAMusicIfItsPriceIsHighestThanHisCredits() throws Exception {
+        catalog.login("carol", "123456");
         assertEquals(0, producer2.getCredits());
         assertEquals(25, client.getCredits());
-        client.buy(m3);
+        catalog.buyMusic(m3);
+//        client.buy(m3);
         assertEquals(4, client.getCredits());
         assertEquals(1, client.getMyMusics().size());
         assertEquals(2, m4.getPopularity());
@@ -165,22 +175,23 @@ public class PopulatedTest {
         client.buy(m1);
         client.buy(m2);
         client.buy(m4);
-        assertEquals(5, catalog.getMusics().size());
+        assertEquals(5, catalog.getCatalog().size());
         assertEquals(4, users.getUsers().size());
         assertEquals(3, client.getMyMusics().size());
-        admin.removeProducer("aninha");
-        assertEquals(3, catalog.getMusics().size());
+        catalog.blockProducer("aninha");
+        assertEquals(3, catalog.getCatalog().size());
         assertEquals(3, users.getUsers().size());
         assertEquals(3, client.getMyMusics().size());
     }
     
     @Test
     public void testPerformanceFilter10000musicsInLessThan10seconds() throws Exception {
+        catalog.login("aninha", "123456");
         for (int i = 0; i < 10000-5; i++) {
-            producer.publish(Code.generateKey(i), Code.generateKey(i), Code.generateKey(i), Code.generateKey(i), Math.round(Math.random()*100)+"");
+            catalog.publishMusic(Code.generateKey(i), Code.generateKey(i), Code.generateKey(i), Code.generateKey(i), Math.round(Math.random()*100)+"");
         }
         long t = System.currentTimeMillis();
-        Store.getInstance().getMusics().filter("name", "10").sort("price");
+        Store.getInstance().getCatalog().filter("name", "10").sort("price");
         t = System.currentTimeMillis() - t;
         assertTrue(t<10000);
         System.out.println(t+"ms");

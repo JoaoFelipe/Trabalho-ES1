@@ -1,20 +1,20 @@
-import sessions.Session;
-import users.Admin;
+import ui.sessions.Session;
+import business.users.Admin;
 import java.util.List;
 import java.util.Arrays;
-import store.Store;
-import users.User;
+import business.store.Store;
+import business.users.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import users.Client;
+import business.users.Client;
 import static org.junit.Assert.*;
 
 public class UserTest {
     
     Store catalog;
     Store credits;
-    Store users;
+    Store store;
     
     Admin admin;
     
@@ -22,9 +22,9 @@ public class UserTest {
     public void setUp() {
         catalog = Store.getInstance();
         credits = Store.getInstance();
-        users = Store.getInstance();
+        store = Store.getInstance();
         
-        admin = (Admin) users.findByLogin("admin");
+        admin = (Admin) store.findByLogin("admin");
     }
     
     @After
@@ -35,8 +35,8 @@ public class UserTest {
     
     @Test
     public void testUsersDefaultInstanceShouldCreateAnAdmin() throws Exception {
-        assertEquals(1, users.getUsers().size());
-        User user = users.findByLogin("admin");
+        assertEquals(1, store.getUsers().size());
+        User user = store.findByLogin("admin");
         assertNotNull(user);
         assertEquals(user.getName(), "Administrador");
         assertEquals(user.getEmail(), "admin@admin.com");
@@ -91,29 +91,29 @@ public class UserTest {
 
     @Test
     public void testClientCanSignUp() throws Exception {
-        assertNull(users.findByLogin("aninha"));
-        users.signUpClient("Ana", "ana@email.com", "aninha", "123456", "123456");
-        assertNotNull(users.findByLogin("aninha"));
-        assertEquals(2, users.getUsers().size());
+        assertNull(store.findByLogin("aninha"));
+        store.signUpClient("Ana", "ana@email.com", "aninha", "123456", "123456");
+        assertNotNull(store.findByLogin("aninha"));
+        assertEquals(2, store.getUsers().size());
     }
     
     @Test
     public void testClientLoginShouldBeUnique() throws Exception {
         try {
-            users.signUpClient("Ana Admin", "ana@email.com", "admin", "123456", "123456");
+            store.signUpClient("Ana Admin", "ana@email.com", "admin", "123456", "123456");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("Este login já existe", e.getMessage());
         }
-        assertEquals(1, users.getUsers().size());
+        assertEquals(1, store.getUsers().size());
     }
     
     @Test
     public void testCreateAdmin() throws Exception {
-        assertNull(users.findByLogin("aninha"));
-        User user = users.signUpAdmin("Ana", "ana@email.com", "aninha", "123456", "123456");
-        assertEquals(user, users.findByLogin("aninha"));
-        assertEquals(2, users.getUsers().size());
+        assertNull(store.findByLogin("aninha"));
+        User user = store.signUpAdmin("Ana", "ana@email.com", "aninha", "123456", "123456");
+        assertEquals(user, store.findByLogin("aninha"));
+        assertEquals(2, store.getUsers().size());
         assertEquals(user.getName(), "Ana");
         assertEquals(user.getEmail(), "ana@email.com");
         assertEquals(user.getLogin(), "aninha");
@@ -122,10 +122,10 @@ public class UserTest {
     
     @Test
     public void testCreateProducer() throws Exception {
-        assertNull(users.findByLogin("aninha"));
-        User user = users.signUpProducer("Ana", "ana@email.com", "aninha", "123456", "123456");
-        assertEquals(user, users.findByLogin("aninha"));
-        assertEquals(2, users.getUsers().size());
+        assertNull(store.findByLogin("aninha"));
+        User user = store.signUpProducer("Ana", "ana@email.com", "aninha", "123456", "123456");
+        assertEquals(user, store.findByLogin("aninha"));
+        assertEquals(2, store.getUsers().size());
         assertEquals(user.getName(), "Ana");
         assertEquals(user.getEmail(), "ana@email.com");
         assertEquals(user.getLogin(), "aninha");
@@ -134,14 +134,14 @@ public class UserTest {
     
     @Test
     public void testUserLogin() throws Exception {
-        users.login("admin", "admin");
-        assertEquals(admin, users.getLoggedUser());
+        store.login("admin", "admin");
+        assertEquals(admin, store.getLoggedUser());
     }
     
     @Test
     public void testLoginMustExist() throws Exception {
         try {
-            users.login("teste", "admin");
+            store.login("teste", "admin");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("O login e/ou a senha estão incorretos", e.getMessage());
@@ -151,7 +151,7 @@ public class UserTest {
     @Test
     public void testPasswordShouldMatch() throws Exception {
         try {
-            users.login("admin", "123456");
+            store.login("admin", "123456");
             assertFalse(true);
         } catch (Exception e) {
             assertEquals("O login e/ou a senha estão incorretos", e.getMessage());
@@ -191,10 +191,10 @@ public class UserTest {
     
     @Test
     public void testLogout() throws Exception {
-        users.login("admin", "admin");
-        assertEquals(admin, users.getLoggedUser());
-        admin.logout();
-        assertNull(users.getLoggedUser());
+        store.login("admin", "admin");
+        assertEquals(admin, store.getLoggedUser());
+        store.logout();
+        assertNull(store.getLoggedUser());
     }
 
 
