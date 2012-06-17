@@ -35,19 +35,35 @@ public class Store {
     public void populate() {
         try {
             
-            this.signUpProducer("Universal", "contato@universal.com", "universal", "1", "1");
-            this.signUpProducer("Som Livre", "contato@somlivre.com", "somlivre", "1", "1");
-            this.signUpProducer("Talismã", "talisma@gmail.com", "talisma", "1", "1");
-            this.signUpProducer("Sem Rumo", "andrelu91@gmail.com", "semrumo", "1", "1");
-            this.signUpProducer("Girassol", "girassol@bol.com", "girassol", "1", "1");
-            this.signUpProducer("Anonymous", "anonymous@tormail.org", "anonymous", "1", "1");
-            this.login("universal", "1");
-            this.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "2");
-            this.publishMusic("Innocence", "Punk Rock", "The Best Damn Thing", "Avril Lavigne", "10");
-            this.publishMusic("She Wolf", "Nu-Disco, electropop", "She Wolf", "Shakira", "21");
-            this.publishMusic("Loba", "Nu-Disco, electropop latin", "She Wolf", "Shakira", "5");
-            this.publishMusic("Estoy Aqui", "Latin", "Piez Descalzos", "Shakira", "1");
-            this.signUpClient("Cliente", "client@email.com", "client", "1", "1");
+            this.signUpProducer("Universal", "contato@universal.com", "universal", "123456", "123456");
+            this.signUpProducer("Som Livre", "contato@somlivre.com", "somlivre", "123456", "123456");
+            this.signUpProducer("Talismã", "talisma@gmail.com", "talisma", "123456", "123456");
+            this.signUpProducer("Sem Rumo", "andrelu91@gmail.com", "semrumo", "123456", "123456");
+            this.signUpProducer("Girassol", "girassol@bol.com", "girassol", "123456", "123456");
+            this.signUpProducer("Anonymous", "anonymous@tormail.org", "anonymous", "123456", "123456");
+            this.signUpClient("Cliente", "client@email.com", "client", "123456", "123456");
+            this.signUpClient("Lucas", "lucano13@hotmail.com", "lucas", "123456", "123456");
+            this.signUpClient("João", "jpnp@hotmail.com", "joao", "123456", "123456");
+            this.signUpClient("André", "andreg@hotmail.com", "andre", "123456", "123456");
+            this.signUpClient("Anderson", "anderson@hotmail.com", "anderson", "123456", "123456");
+            this.login("universal", "123456");
+            this.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "15");
+            this.publishMusic("Californication", "Rock", "Californication", "Red Hot Chilli Peppers", "20");
+            this.publishMusic("She Wolf", "Nu-Disco, electropop", "She Wolf", "Shakira", "20");
+            this.publishMusic("Loba", "Nu-Disco, electropop latin", "She Wolf", "Shakira", "10");
+            this.publishMusic("Even Flow", "Rock", "Ten", "Pearl Jam", "25");
+            this.publishMusic("Innocence", "Punk Rock", "The Best Damn Thing", "Avril Lavigne", "25");
+            this.publishMusic("Pássaro de Fogo", "Sertanejo", "Pássaro de Fogo", "Paula Fernandes", "35");
+            this.publishMusic("Estoy Aqui", "Latin", "Piez Descalzos", "Shakira", "20");
+            this.logout();
+            this.login("somlivre", "123456");
+            this.publishMusic("Chop Suey", "Rock", "Toxicity", "System of a Down", "25");
+            this.publishMusic("É O Amor", "Sertanejo", "É o Amor", "Zezé Di Camargo & Luciano", "15");
+            this.publishMusic("Ai Se Eu Te Pego", "Sertanejo Universitário", "Michel Na Balada", "Michel Teló", "20");
+            this.publishMusic("Someone Like You", "Pop", "21", "Adele", "30");
+            this.publishMusic("Paciência", "MPB", "Vô Imbolá", "Lenine", "15");
+            this.publishMusic("Nossa Canção", "MPB", "RC Ao Vivo em Jerusalém", "Roberto Carlos", "20");
+            this.publishMusic("Tá Vendo Aquela Lua", "Pagode", "Exaltasamba 25 Anos", "Exaltasamba", "25");
             this.logout();
         } catch (Exception e) {
             
