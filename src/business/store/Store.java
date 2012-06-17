@@ -34,8 +34,14 @@ public class Store {
     
     public void populate() {
         try {
-            Producer producer = this.signUpProducer("Producer", "producer@email.com", "producer", "1", "1");
-            this.login("producer", "1");
+            
+            this.signUpProducer("Universal", "contato@universal.com", "universal", "1", "1");
+            this.signUpProducer("Som Livre", "contato@somlivre.com", "somlivre", "1", "1");
+            this.signUpProducer("Talismã", "talisma@gmail.com", "talisma", "1", "1");
+            this.signUpProducer("Sem Rumo", "andrelu91@gmail.com", "semrumo", "1", "1");
+            this.signUpProducer("Girassol", "girassol@bol.com", "girassol", "1", "1");
+            this.signUpProducer("Anonymous", "anonymous@tormail.org", "anonymous", "1", "1");
+            this.login("universal", "1");
             this.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "2");
             this.publishMusic("Innocence", "Punk Rock", "The Best Damn Thing", "Avril Lavigne", "10");
             this.publishMusic("She Wolf", "Nu-Disco, electropop", "She Wolf", "Shakira", "21");

@@ -24,7 +24,7 @@ public class ProducerIterator implements Iterator<Object[]>, Iterable<Object[]> 
     }
 
     public Object[] next() {
-        if (currentIndex == currentList.size() - 1) {
+        if (currentIndex == currentList.size() -1) {
             throw new NoSuchElementException();
         }
         currentIndex += 1;
