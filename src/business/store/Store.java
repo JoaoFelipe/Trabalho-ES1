@@ -11,6 +11,7 @@ import business.users.Client;
 import business.users.Producer;
 import business.users.ProducerIterator;
 import business.users.User;
+import business.users.UserTemplate;
 
 public class Store {
     
@@ -143,29 +144,19 @@ public class Store {
         return null;
     }
     
-    public Music publishMusic(String name, String genre, String album, String artist, String price) throws Exception {
+    public void publishMusic(String name, String genre, String album, String artist, String price) throws Exception {
         User user = this.getLoggedUser();
         if (user instanceof Producer) {
             Producer producer = (Producer) user;
-            Music.validateInformations(name, genre, album, artist, price);
-            Music music = new Music(producer, name, genre, album, artist, price);
-            this.getCatalog().add(music);
-            producer.getPublications().add(music);
-            return music;
+            producer.publish(name, genre, album, artist, price);
         }
-        return null;
     }
     
     public void removeMusic(Music music) {
         Producer producer = music.getProducer();
-        MusicList publications = producer.getPublications();
-        publications.remove(music);
-        this.getCatalog().remove(music);
+        producer.removeMusic(music);
     }
     
-    public void changeMusic(Music music, String name, String genre, String album, String artist, String price) throws Exception {
-        music.change(name, genre, album, artist, price);
-    }
     
     public void buyMusic(Music music) throws Exception {
         User user = this.getLoggedUser();
@@ -179,23 +170,15 @@ public class Store {
         User user = this.getLoggedUser();
         if (user instanceof Client) {
             Client client = (Client) user;
-            Code code = this.findCode(key);
-            if (code == null) {
-                throw new Exception("O código digitado não existe");
-            } else {
-                code.activate();
-                client.addCredits(code.getValue());
-            }
+            client.acquireCredits(key);
         }
     }
     
     public void blockProducer(String login) throws Exception {
-        User user = this.findByLogin(login);
-        if (user instanceof Producer) {
-            Producer producer = (Producer) user;
-            MusicList musics = producer.getPublications();
-            this.getCatalog().removeAll(musics);
-            this.removeUser(user);
+        User user = this.getLoggedUser();
+        if (user instanceof Admin) {
+            Admin admin = (Admin) user;
+            admin.blockProducer(login);
         }
     }
     
@@ -226,10 +209,9 @@ public class Store {
     
     public MusicList getLoggedUserMusics() {
         User user = this.getLoggedUser();
-        if (user instanceof Client) {
-            return ((Client) user).getMyMusics();
-        } else if (user instanceof Producer) {
-            return ((Producer) user).getPublications();
+        
+        if (user instanceof UserTemplate) {
+            return ((UserTemplate) user).getMusicList();
         }
         return new MusicList();
     }
@@ -253,11 +235,11 @@ public class Store {
     }
     
     
-    public Iterable<Object[]> getCodeTableIterator() {
+    public Iterable<Object[]> createCodeTableIterator() {
         return new CodeIterator(this.getCodes());
     }
     
-    public Iterable<Object[]> getProducersTable() {
+    public Iterable<Object[]> createProducersTableIterator() {
         return new ProducerIterator(this.getUsers());
     }
     

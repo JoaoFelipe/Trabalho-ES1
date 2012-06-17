@@ -38,16 +38,16 @@ public class AdminSession extends UserSession {
     public void buildCodesTable() {
         Store store = Store.getInstance();
         JTable codesTable = ((AdminFrame) this.getComponent()).getCodesTable();
-        codesTable.setModel(new CodesTableModel(store.getCodeTableIterator()));
+        codesTable.setModel(new CodesTableModel(store.createCodeTableIterator()));
     }
     
     public void buildProducersTable() {
         Store store = Store.getInstance();
         final JTable producersTable = ((AdminFrame) this.getComponent()).getProducersTable();     
-        final DefaultTableModel model = new ProducersTableModel(store.getProducersTable());
+        final DefaultTableModel model = new ProducersTableModel(store.createProducersTableIterator());
         producersTable.setModel(model);
         TableColumn column = producersTable.getColumnModel().getColumn(3);
-        TableButton button = new TableButton("Remover");
+        TableButton button = new TableButton("Bloquear");
         button.addTableButtonListener(new TableButtonListener() {
             @Override
             public void tableButtonClicked(int row, int col) {
@@ -55,7 +55,7 @@ public class AdminSession extends UserSession {
             }
         });
         
-        column.setCellRenderer(new TableButton("Remover"));
+        column.setCellRenderer(new TableButton("Bloquear"));
         column.setCellEditor(button);
     }
  

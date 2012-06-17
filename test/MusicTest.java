@@ -82,7 +82,7 @@ public class MusicTest {
     public void testPublishMusicInCatalog() throws Exception {
         store.login("ana", "123456");
         assertEquals(0, store.getCatalog().size());
-        assertNotNull(store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5"));
+        store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
         assertEquals(1, store.getCatalog().size());
     }
     
@@ -113,7 +113,7 @@ public class MusicTest {
     public void testRemoveMusicFromCatalog() throws Exception {
         store.login("ana", "123456");
         assertEquals(0, store.getCatalog().size());
-        assertNotNull(store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5"));
+        store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
         Music music = store.getCatalog().get(store.getCatalog().size()-1);
         assertEquals(1, store.getCatalog().size());
         store.removeMusic(music);
@@ -125,29 +125,29 @@ public class MusicTest {
     public void testProducersCanPublishMusics() throws Exception {
         store.login("ana", "123456");
         assertEquals(0, store.getCatalog().size());
-        assertEquals(0, producer.getPublications().size());
-        assertNotNull(store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5"));
+        assertEquals(0, producer.getMusicList().size());
+        store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
         Music music = store.getCatalog().get(store.getCatalog().size()-1);
         assertEquals(producer, music.getProducer());
-        assertEquals(1, producer.getPublications().size());
+        assertEquals(1, producer.getMusicList().size());
         assertEquals(1, store.getCatalog().size());
     }
     
     @Test
     public void testProducersCanChangeInformationsFromMusicsThatHePublished() throws Exception {
         store.login("ana", "123456");
-        assertNotNull(store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5"));
+        store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
         Music music = store.getCatalog().get(store.getCatalog().size()-1);
         assertEquals(1, store.getCatalog().size());
         assertEquals("Sk8er Boi", music.getName());
-        store.changeMusic(music, "Skater Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
+        music.change("Skater Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
         assertEquals("Skater Boi", music.getName());
     }
     
     @Test
     public void testProducersCanRemoveMusicsThatHePublished() throws Exception {
         store.login("ana", "123456");
-        assertNotNull(store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5"));
+        store.publishMusic("Sk8er Boi", "Pop Rock", "Let Go", "Avril Lavigne", "5");
         Music music = store.getCatalog().get(store.getCatalog().size()-1);
         assertEquals(1, store.getCatalog().size());
         store.removeMusic(music);

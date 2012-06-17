@@ -106,11 +106,11 @@ public class PopulatedTest {
     public void testClientCanBuyMusic() throws Exception {
         assertEquals(0, producer.getCredits());
         assertEquals(25, client.getCredits());
-        assertEquals(0, client.getMyMusics().size());
+        assertEquals(0, client.getMusicList().size());
         assertEquals(0, m1.getPopularity());
         client.buy(m1);
         assertEquals(23, client.getCredits());
-        assertEquals(1, client.getMyMusics().size());
+        assertEquals(1, client.getMusicList().size());
         assertEquals(1, m1.getPopularity());
         assertEquals(2, producer.getCredits());
     }
@@ -119,11 +119,11 @@ public class PopulatedTest {
     public void testProducerReceiveTheCreditIfTheMusicValueIs1() throws Exception {
         assertEquals(0, producer2.getCredits());
         assertEquals(25, client.getCredits());
-        assertEquals(0, client.getMyMusics().size());
+        assertEquals(0, client.getMusicList().size());
         assertEquals(0, m5.getPopularity());
         client.buy(m5);
         assertEquals(24, client.getCredits());
-        assertEquals(1, client.getMyMusics().size());
+        assertEquals(1, client.getMusicList().size());
         assertEquals(1, m5.getPopularity());
         assertEquals(1, producer2.getCredits());
     }
@@ -132,7 +132,7 @@ public class PopulatedTest {
     public void testClientCannotBuyTheSameMusicTwice() throws Exception {
         assertEquals(0, producer.getCredits());
         assertEquals(25, client.getCredits());
-        assertEquals(0, client.getMyMusics().size());
+        assertEquals(0, client.getMusicList().size());
         assertEquals(0, m1.getPopularity());
         client.buy(m1);
         try {
@@ -142,7 +142,7 @@ public class PopulatedTest {
             assertEquals("Você já possui esta música", e.getMessage());
         }
         assertEquals(23, client.getCredits());
-        assertEquals(1, client.getMyMusics().size());
+        assertEquals(1, client.getMusicList().size());
         assertEquals(1, m1.getPopularity());
         assertEquals(2, producer.getCredits());
     }
@@ -155,7 +155,7 @@ public class PopulatedTest {
         catalog.buyMusic(m3);
 //        client.buy(m3);
         assertEquals(4, client.getCredits());
-        assertEquals(1, client.getMyMusics().size());
+        assertEquals(1, client.getMusicList().size());
         assertEquals(2, m4.getPopularity());
         assertEquals(17, producer2.getCredits());
         try {
@@ -165,7 +165,7 @@ public class PopulatedTest {
             assertEquals("Você não possui créditos suficientes", e.getMessage());
         }
         assertEquals(4, client.getCredits());
-        assertEquals(1, client.getMyMusics().size());
+        assertEquals(1, client.getMusicList().size());
         assertEquals(2, m4.getPopularity());
         assertEquals(17, producer2.getCredits());
     }
@@ -177,11 +177,11 @@ public class PopulatedTest {
         client.buy(m4);
         assertEquals(5, catalog.getCatalog().size());
         assertEquals(4, users.getUsers().size());
-        assertEquals(3, client.getMyMusics().size());
+        assertEquals(3, client.getMusicList().size());
         catalog.blockProducer("aninha");
         assertEquals(3, catalog.getCatalog().size());
         assertEquals(3, users.getUsers().size());
-        assertEquals(3, client.getMyMusics().size());
+        assertEquals(3, client.getMusicList().size());
     }
     
     @Test
